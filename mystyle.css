@@ -21,3 +21,26 @@ a:hover {
     background-color: blue;
 }
 
+h1 {
+    font-size:24px;
+}
+
+h2 {
+    font-size:20px;
+}
+
+p, label{
+    font-size:14px;
+}
+
+
+form {
+    font-family: "Comic Neue", Bangers, "Fredoka One" ;
+}
+input, button, textarea, select {
+    border: 2px solid green;
+    border_radius: 4px;
+    padding: 5px;
+    margin: 5px;
+}
+
