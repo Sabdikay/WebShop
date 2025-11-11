@@ -1,6 +1,14 @@
 body{
     font-family: "Comic Neue", Bangers, "Fredoka One";
     font-size: 12px;
+    text-align: center;
 
 
+}
+p {
+    text-align:right;
+    
+}
+th{
+    background-color: lightgray;
 }
