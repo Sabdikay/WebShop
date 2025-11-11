@@ -2,8 +2,6 @@ body{
     font-family: "Comic Neue", Bangers, "Fredoka One";
     font-size: 12px;
     text-align: center;
-
-
 }
 p {
     text-align:right;
@@ -12,3 +10,14 @@ p {
 th{
     background-color: lightgray;
 }
+
+a{
+    color: green;
+    background-color: yellow;
+}
+
+a:hover {
+    color: red;
+    background-color: blue;
+}
+
