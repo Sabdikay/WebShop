@@ -11,10 +11,10 @@ th{
     background-color: lightgray;
 }
 
-a{
+/*a{
     color: green;
     background-color: yellow;
-}
+}*/
 
 a:hover {
     color: red;
