@@ -6,25 +6,42 @@
 	<link rel="stylesheet" type="text/css" href="mystyle.css">
 </head>
 <body>
-	<header>
-		<h1>Welcome to Memeshop</h1>
-		<p>Your destination for cool T-shirts and Hoodies for Men and Women!</p>
-		<hr>
-		 <nav class="top-nav">
-            <strong>Quick Navigation:</strong>
-            <a href="menList.html">Men</a> | 
-            <a href="womenList.html">Women</a> | 
-            <a href="shoppingCart.html">Shopping Cart</a> | 
-            <a href="login.html">Login</a> | 
-            <a href="customer.html">Profile</a>
-   </nav>
-   <hr>
+
+	<header class="main-header">
+		<div class="header-container">
+				<h1>MemeShop</h1>
+			<nav class="top-nav">
+				<a href="menList.html">Men</a>
+				<a href="womenList.html">Women</a>
+			</nav>
+			<div class="header-icons">
+				<a href="customer.html" class="icon-btn profile-btn">
+					<span class="btn-text">Profile</span>
+				</a>
+				<a href="shoppingCart.html" class="icon-btn cart-btn">
+					<span class="btn-text">Cart</span>
+				</a>
+			</div>
+		</div>
 	</header>
+    <hr>
 
 	<!-- Banner -->
 	<div class="banner">
 		<img src="Webshop pictures/Main page image.jpg" alt="MemeShop Banner">
 	</div>
+
+		<!-- Best Sellers -->
+	<section>
+		<h1>Best Sellers</h1>
+			<div class="product-card">
+				<a href="owlHoodie.html">
+					<img src="Webshop pictures/owl.png" alt="Owl Hoodie">
+					<h3>Owl Hoodie</h3>
+					<p class="price">€40.00</p>
+				</a>
+			</div>
+	</section>
 
 	<!--Navigation Menu--> 
 	<nav class="category-nav">
@@ -45,18 +62,6 @@
 		</ul>    	    
 	</nav>
 
-	<!--Main-->
-	<main>
-		<h2>About Our Store</h2>
-		<p>Welcome to our WebShop, where style meets comfort and sence of humor! We offer a wide selection of quality clothing for men and women. Browse our collection of trendy t-shirts and cozy hoodies.</p>
-
-		<!-- To be determined;)
-		<h3>Shop With Us</h3>
-		-->
-		<h3>Featured Products</h3>
-		<p>Check out our latest arrivals in the Men and Women sections!</p>
-	</main>
-
 	<!-- Login Area -->
 	<section class="auth-section">
 		<h2>Authentication</h2>
@@ -67,6 +72,19 @@
             <li><a href="shoppingCart.html">Shopping Cart</a></li>
 		</ul>
 	</section>
+
+	<!--Main-->
+	<main>
+		<h2>About Our Store</h2>
+		<p>Welcome to our MemeShop, where style meets comfort and sence of humor! We offer a wide selection of quality clothing for men and women. Browse our collection of trendy t-shirts and cozy hoodies.</p>
+
+		
+		<!--<h3>Shop With Us</h3>
+		-->
+		<h3>Featured Products</h3>
+		<p>Check out our latest arrivals in the Men and Women sections!</p>
+	</main>
+
 
 	<footer>
         <h3>Need more Information?</h3>
