@@ -18,7 +18,7 @@ th{
 
 a:hover {
     color: red;
-    background-color: blue;
+    /*background-color: blue;*/
 }
 
 h1 {
@@ -44,6 +44,55 @@ input, button, textarea, select {
     margin: 5px;
 }
 
+/* Index page changes */
+.main-header {
+    padding: 15px;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.top-nav a {
+    text-decoration: none;
+    color: black;
+    font-size:20px;
+    padding: 30px;
+}
+
+.top-nav a:hover {
+    color: green;
+    background-color: transparent;
+}
+
+.header-icons {
+    display: flex;
+    gap: 25px;
+}
+
+.icon-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+    border: 2px solid #3a3939;
+    border-radius: 25px;
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+    
+}
+
+.icon-btn:hover {
+    background-color: green;
+    color: white;
+    border-color: green;
+}
+
+
 .banner {
     width: 100%;
     margin: 20px 0;
@@ -59,6 +108,30 @@ input, button, textarea, select {
     max-height: 600px;
 }
 
+
+.product-card {
+    background: white;
+    border: 1px solid;
+    border-radius: 9px;
+    padding: 30px;
+    text-align: center;
+    width: 100%;
+    max-width: 300px;
+}
+
+.product-card a {
+    text-decoration: none;
+    color: black;
+}
+
+.product-card img {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    margin-bottom: 15px;
+}
+
+
 .top-nav {
     padding: 10px 0;
     margin: 0;
@@ -66,7 +139,6 @@ input, button, textarea, select {
 
 .category-nav {
     max-width: 1200px;
-    margin: 30px auto;
     padding: 20px;
 }
 
@@ -81,7 +153,6 @@ input, button, textarea, select {
 
 main {
     max-width: 100%;
-    margin: 30px auto;
     padding: 20px;
     background-color: #f9f9f9;
 }
@@ -89,7 +160,6 @@ main {
 
 .auth-section {
     max-width: 100%;
-    margin: 30px auto;
     padding: 20px;
     background-color: #f5f5f5;
 }
@@ -107,7 +177,6 @@ main {
 
 footer {
     max-width: 100%;
-    margin: 0px auto;
     padding: 20px;
     background-color: #333;
     color: white;
@@ -120,10 +189,10 @@ footer a {
 
 footer a:hover {
     color: white;
-    background-color: transparent;
     text-decoration: underline;
 }
 
+/* end of Index page changes */
 
 
 
