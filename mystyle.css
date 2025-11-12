@@ -56,5 +56,77 @@ input, button, textarea, select {
     height: auto;
     display: block;
     object-fit: cover;
-    max-height: 500px;
+    max-height: 600px;
 }
+
+.top-nav {
+    padding: 10px 0;
+    margin: 0;
+}
+
+.category-nav {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 20px;
+}
+
+.category-nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+.category-nav li {
+    margin: 10px 0;
+}
+
+main {
+    max-width: 100%;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+
+
+.auth-section {
+    max-width: 100%;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #f5f5f5;
+}
+
+.auth-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+
+.auth-section li {
+    margin: 10 px 0;
+}
+
+
+footer {
+    max-width: 100%;
+    margin: 0px auto;
+    padding: 20px;
+    background-color: #333;
+    color: white;
+}
+
+
+footer a {
+    color: lightgreen;
+}
+
+footer a:hover {
+    color: white;
+    background-color: transparent;
+    text-decoration: underline;
+}
+
+
+
+
+
+
+
