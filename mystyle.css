@@ -11,10 +11,13 @@ th{
     background-color: rgba(231, 9, 194, 0.473);
 }
 
-/*a{
+a{
     color: green;
-    background-color: yellow;
-}*/
+    
+}
+a:hover {
+    color: black;
+}
 
 body > a:hover {
     color: red;
@@ -43,6 +46,14 @@ input, button, textarea, select {
     margin: 5px;
 }
 
+button {
+    background-color: green;
+    color: white;
+}
+button:hover {
+    background-color: white;
+    color: green;
+}
 
 /* Index page changes */
 .main-header {
