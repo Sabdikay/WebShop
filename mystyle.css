@@ -373,7 +373,6 @@ footer a:hover {
     padding: 6px 14px;
     border-radius: 5px;
     border: 2px solid green;
-    transition: all 0.3s ease;
 }
 
 .product-nav a:hover {
