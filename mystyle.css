@@ -202,15 +202,6 @@ footer a:hover {
     margin: 0;
 }
 
-.men-page .header-container p a {
-    color: white;
-    text-decoration: none;
-    font-size: 16px;
-}
-
-.men-page .header-container p a:hover {
-    color: green; 
-}
 
 /* Navigation section for womenList.html/menList.html */
 .men-page .nav-container {
