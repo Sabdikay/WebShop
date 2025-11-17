@@ -19,9 +19,6 @@ a:hover {
     color: black;
 }
 
-body > a:hover {
-    color: red;
-}
 
 h1 {
     font-size:24px;
