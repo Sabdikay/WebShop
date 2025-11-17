@@ -52,12 +52,9 @@ button:hover {
     color: green;
 }
 
-/* Index page changes */
-.main-header {
-    padding: 15px;
-}
 
 .header-container {
+    padding: 15px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -73,7 +70,6 @@ button:hover {
 
 .top-nav a:hover {
     color: green;
-    background-color: transparent;
 }
 
 .header-icons {
@@ -81,7 +77,7 @@ button:hover {
     gap: 25px;
 }
 
-.icon-btn {
+.profile-btn,.cart-btn {
     padding: 10px 20px;
     border: 2px solid black;
     border-radius: 25px;
@@ -91,7 +87,7 @@ button:hover {
     
 }
 
-.icon-btn:hover {
+.profile-btn:hover,.cart-btn:hover {
     background-color: green;
     color: white;
     border-color: green;
@@ -102,7 +98,6 @@ button:hover {
     width: 100%;
     margin: 20px 0;
     padding: 0;
-    overflow: hidden;
 }
 
 .banner img {
