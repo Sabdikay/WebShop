@@ -394,7 +394,7 @@ footer a:hover {
     max-width: 500px;
     border: 1px solid #ddd;
     border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 8px black;
 }
 
 .product-details img {
