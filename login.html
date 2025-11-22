@@ -8,13 +8,24 @@
     <body>
         <h1>Login to your account</h1>
         <hr>
-        <p>
-            <label>Username: </label> <input type="text"> <br><br>
-            <label>Password: </label> <input type="text"> <br><br>
-            <a href="registration.html"><button>Not Registered? Click Here!</button></a><br><br>
-            <button>Verify</button>
-             
-        </p>
+        <form id="loginForm">
+            <label>Username: </label>
+            <input type="text" id="username">
+            <span id="usernameError" class="error"></span>
+            <br>
+
+            <label>Password: </label>
+            <input type="password" id="password">
+            <span id="passwordError" class="error"></span>
+            <br><br>
+
+            <a href="registration.html"><button type="button">Not Registered? Click Here!</button></a>
+            <br><br>
+            <button type = "submit">Verify</button>
+        </form>
+
         <p class="men-page"><a href="index.html">Back to Homepage</a></p>
+
+        <script src="forms.js"></script>
     </body>
 </html>
