@@ -20,16 +20,27 @@ Please check at least the following aspects:
     <body>
         <h1>Register for an account</h1>
         <hr>
-        <p>
-            <label>Username: </label> <input type="text"> <br><br>
-            <label>Password: </label> <input type="text"> <br><br>
-            <label>Confirm Password: </label> <input type="text"> <br><br>
+        <form id="regForm">
+            <label>Username: </label> 
+            <input type="text" id="username">
+            <span id="usernameError" class="error"></span> 
+            <br>
+            <label>Password: </label>
+            <input type="password" id="password">
+            <span id="passwordError" class="error"></span> 
+            <br>
+            <label>Confirm Password: </label>
+            <input type="password" id="confirmPassword">
+            <span id="confirmError" class="error"></span>
+            <br>
+
             <a href="login.html"><button>Cancel</button></a><br><br>
-            <form><button>Register</button></form>
-            
-             
-        </p>
+            <form><button>Register</button></form> 
+        </form>
+
         <p class="men-page"><a href="index.html">Back to Homepage</a></p>
+
+        <script src="forms.js"></script>
 
     </body>
 </html>
