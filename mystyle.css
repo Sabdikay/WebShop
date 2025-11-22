@@ -471,8 +471,26 @@ footer a:hover {
 }
 
 
+/* Forms Validation colors */
+input.valid {
+    border-color: green !important;
+    background-color:lightgreen !important;
+}
+        
+input.invalid {
+    border-color: red !important;
+    background-color:#FFB6C1 !important;
+}
+        
+.error {
+    color: red;
+    font-size: 12px;
+    display: block;
+    margin-top: -3px;
+    margin-bottom: 10px;
+}
 
-
+/* Forms Validation colors end*/
 
 
 
