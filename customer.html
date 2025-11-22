@@ -1,20 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Customer Information</title>
   <link href="https://fonts.googleapis.com/css2?family=Comic+Neue&family=Bangers&family=Fredoka+One&display=swap" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="mystyle.css">
 </head>
+
 <body>
  <h1>Customer Profile</h1>
- <form>
+ <form id="customerForm">
   <label>Username:</label><br>
-  <input type="text" value="Ben.Smith"><br><br>
+  <input type="text" id="username" value="Ben.Smith">
+  <span id="usernameError" class="error"></span>
+  <br>
   <label>Password:</label><br>
-  <input type="text" value="ichweißnicht"><br><br>
+  <input type="text" id="password" value="ichweißnicht">
+  <span id="passwordError" class="error"></span><br><br>
   <button type="submit">Update Information</button>
   </form>
   <p><a href="logout.html">Logout</a></p>
   <p class="men-page"><a href="index.html">Back to Homepage</a></p>
+  <script src="forms.js"></script>
 </body>
 </html>
