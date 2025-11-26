@@ -499,6 +499,7 @@ input.invalid {
     display: flex;
     gap: 25px;
     align-items: center;
+    margin-left: auto;
 }
 
 .theme-controls button {
@@ -537,6 +538,59 @@ button.cart-btn:hover {
     color: white;
     border-color: green;
 }
+
+.back-home-container {
+    text-align: center;
+    margin-top: 8px;
+}
+
+.back-home a {
+    color: green;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+    background-color: #121212;
+    color: #f1f1f1;
+}
+
+body.dark-mode header,
+body.dark-mode .nav-container,
+body.dark-mode footer {
+    background-color: #1e1e1e;
+    color: white;
+}
+
+body.dark-mode a {
+    color: lightgreen;
+}
+
+body.dark-mode .product-item,
+body.dark-mode .product-details {
+    background-color: #222;
+    border-color: #444;
+}
+
+/* Layout modes controlled by JavaScript */
+.horizontal-layout {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+}
+
+.vertical-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.vertical-layout .product-item {
+    width: 90%;
+}
+
 
 
 
