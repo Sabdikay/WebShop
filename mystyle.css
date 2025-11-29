@@ -573,6 +573,33 @@ body.dark-mode .product-details {
     border-color: #444;
 }
 
+
+body.dark-mode .auth-section {
+    background-color: #1e1e1e;
+    color: #f1f1f1;             
+}
+
+body.dark-mode .auth-section a {
+    color: lightgreen; 
+}
+
+body.dark-mode .auth-section a:hover {
+    color: white;
+}
+
+body.dark-mode main {
+    background-color: #1e1e1e;   
+    color: #f1f1f1;              
+}
+
+body.dark-mode main h2,
+body.dark-mode main h3,
+body.dark-mode main p {
+    color: #f1f1f1;              
+}
+
+
+
 /* Layout modes controlled by JavaScript */
 .horizontal-layout {
     display: flex;
