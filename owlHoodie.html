@@ -55,7 +55,15 @@ in later exercise sheets.>
     <div id="collectionList">
     <h3>Your Collection List:</h3>
     <ul id="collectionItems"></ul>
-</div>
+    </div>
+    <h3>Price Calculator</h3>
+
+    <label for="priceInput">Price without tax (€):</label>
+    <input type="number" id="priceInput" min="0" step="0.01">
+
+    <button id="calcPriceBtn" class="add-to-cart-btn">Calculate Price with Tax</button>
+
+    <p id="priceWithTaxOutput"></p>
     </section>
   </main>
 
@@ -65,4 +73,5 @@ in later exercise sheets.>
 </body>
 <script src="task2.js"></script>
 <script src="collectionList.js"></script>
+<script src="taxCalculator.js"></script>
 </html>
