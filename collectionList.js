@@ -1,41 +1,40 @@
 let collectionList = [];
 
 document.addEventListener("DOMContentLoaded", function () {
+  const addBtn = document.getElementById("addToCollectionBtn");
+  const quantityInput = document.getElementById("quantity");
+  const collectionItemsUL = document.getElementById("collectionItems");
 
-    const addBtn = document.getElementById("addToCollectionBtn");
-    const quantityInput = document.getElementById("quantity");
-    const collectionItemsUL = document.getElementById("collectionItems");
+  addBtn.addEventListener("click", function () {
+    let productName = document.getElementById("productName").textContent;
+    let qty = parseInt(quantityInput.value);
 
-    if (!addBtn || !quantityInput || !collectionItemsUL) return;
+    let warning = document.getElementById("quantityWarning");
 
-    addBtn.addEventListener("click", function () {
+    if (qty < 1 || isNaN(qty)) {
+      warning.textContent = "Please enter a valid quantity.";
+      return;
+    } else {
+      warning.textContent = "";
+    }
 
-        let productName = "Owl Hoodie";  
-        let qty = parseInt(quantityInput.value);
+    let entry = {
+      name: productName,
+      quantity: qty,
+    };
 
-        if (qty < 1 || isNaN(qty)) {
-            alert("Please enter a valid quantity.");
-            return;
-        }
+    collectionList.push(entry);
 
-        let entry = {
-            name: productName,
-            quantity: qty
-        };
-
-        collectionList.push(entry);
-
-        updateCollectionList(collectionItemsUL);
-    });
+    updateCollectionList(collectionItemsUL);
+  });
 });
 
-
 function updateCollectionList(ulElement) {
-    ulElement.innerHTML = ""; 
+  ulElement.innerHTML = "";
 
-    collectionList.forEach(function (item) {
-        let li = document.createElement("li");
-        li.textContent = `${item.name} × ${item.quantity}`;
-        ulElement.appendChild(li);
-    });
+  collectionList.forEach(function (item) {
+    let li = document.createElement("li");
+    li.textContent = `${item.name} × ${item.quantity}`;
+    ulElement.appendChild(li);
+  });
 }
