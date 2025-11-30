@@ -1,77 +1,83 @@
- <!In this last task you must implement the pages for the products that you have. Each product must
+<!In this last task you must implement the pages for the products that you have. Each product must
 have an individual page with detailed information. In this task it is sufficient, if you implement a
 product’s page for one example product of your web-shop, e.g., sneakerMax203.
 It is up to you what kind of information you are aiming to present in this task but you will definitely
 need a button to add this product to the shopping cart. The shopping cart itself will be implemented
-in later exercise sheets.> 
+in later exercise sheets.>
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Owl Hoodie - Product Information</title>
-  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue&family=Bangers&family=Fredoka+One&display=swap" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="mystyle.css">
-</head>
-<header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Owl Hoodie - Product Information</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Comic+Neue&family=Bangers&family=Fredoka+One&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="mystyle.css" />
+  </head>
+  <header>
     <div class="header-container">
-        <div class="theme-controls">
-            <button id="darkToggleBtn"> Dark Mode</button>
-        </div>
+      <div class="theme-controls">
+        <button id="darkToggleBtn">Dark Mode</button>
+      </div>
     </div>
-</header>
-
-<body class="product-page">
-  <header class="product-header">
-    <h1>Owl Hoodie</h1>
-    <nav class="product-nav">
-     <a href="index.html">Home</a>
-     <a href="menHoodiesList.html">Back to Hoodies</a>
-     <a href="shoppingCart.html">Shopping Cart</a>
-    </nav>
   </header>
 
-  <main class="product-main">
-    <section class="product-details">
-      <img src="Webshop pictures/owl.png" alt="Owl Hoodie" width="200">
-      <h2>Price: €40.00</h2>
-      <p>
-        The Owl Hoodie offers premium comfort and comes with a very
-        catchy design. Made from 65% recycled material.
-      </p>
-      <ul>
-        <li>Material: Cotton & Polyester</li>
-        <li>Available Sizes: XS, S, M, L, XL, XXL, XXXL</li>
-        <li>Color: Green</li>
-      </ul>
-      <button class="add-to-cart-btn">Add to Shopping Cart</button> <br>
-      <label for="quantity"><strong>Quantity:</strong></label>
-    <input type="number" id="quantity" min="1" value="1"><br>
+  <body class="product-page">
+    <header class="product-header">
+      <h1 id="productName">Owl Hoodie</h1>
+      <nav class="product-nav">
+        <a href="index.html">Home</a>
+        <a href="menHoodiesList.html">Back to Hoodies</a>
+        <a href="shoppingCart.html">Shopping Cart</a>
+      </nav>
+    </header>
 
-    <button id="addToCollectionBtn" class="add-to-cart-btn">
-        Add to Collection List
-    </button>
-    <div id="collectionList">
-    <h3>Your Collection List:</h3>
-    <ul id="collectionItems"></ul>
-    </div>
-    <h3>Price Calculator</h3>
+    <main class="product-main">
+      <section class="product-details">
+        <img src="Webshop pictures/owl.png" alt="Owl Hoodie" width="200" />
+        <h2>Price: €40.00</h2>
+        <p>
+          The Owl Hoodie offers premium comfort and comes with a very catchy
+          design. Made from 65% recycled material.
+        </p>
+        <ul>
+          <li>Material: Cotton & Polyester</li>
+          <li>Available Sizes: XS, S, M, L, XL, XXL, XXXL</li>
+          <li>Color: Green</li>
+        </ul>
+        <button class="add-to-cart-btn">Add to Shopping Cart</button> <br />
+        <label for="quantity"><strong>Quantity:</strong></label>
+        <input type="number" id="quantity" /><br />
+        <p id="quantityWarning" style="color: red"></p>
 
-    <label for="priceInput">Price without tax (€):</label>
-    <input type="number" id="priceInput" min="0" step="0.01">
+        <button id="addToCollectionBtn" class="add-to-cart-btn">
+          Add to Collection List
+        </button>
+        <div id="collectionList">
+          <h3>Your Collection List:</h3>
+          <ul id="collectionItems"></ul>
+        </div>
+        <h3>Price Calculator</h3>
 
-    <button id="calcPriceBtn" class="add-to-cart-btn">Calculate Price with Tax</button>
+        <label for="priceInput">Price without tax (€):</label>
+        <input type="number" id="priceInput" min="0" step="0.01" />
 
-    <p id="priceWithTaxOutput"></p>
-    </section>
-  </main>
+        <button id="calcPriceBtn" class="add-to-cart-btn">
+          Calculate Price with Tax
+        </button>
 
-  <footer class="product-footer">
-    <p>&copy; 2025 WebShop – All rights reserved.</p>
-  </footer>
-</body>
-<script src="task2.js"></script>
-<script src="collectionList.js"></script>
-<script src="taxCalculator.js"></script>
+        <p id="priceWithTaxOutput"></p>
+      </section>
+    </main>
+
+    <footer class="product-footer">
+      <p>&copy; 2025 WebShop – All rights reserved.</p>
+    </footer>
+  </body>
+  <script src="task2.js"></script>
+  <script src="collectionList.js"></script>
+  <script src="taxCalculator.js"></script>
 </html>

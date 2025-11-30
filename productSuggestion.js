@@ -3,7 +3,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const suggestBtn = document.getElementById("suggestBtn");
     const output = document.getElementById("suggestionOutput");
 
-    if (!suggestBtn || !output) return;
 
     const products = [
         "Owl Hoodie",
