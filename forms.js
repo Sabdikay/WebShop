@@ -1,11 +1,11 @@
 window.addEventListener('load', function() {
     
-    // Check which page we're on and set up validation
+ 
     var regForm = document.getElementById('regForm');
     var loginForm = document.getElementById('loginForm');
     var customerForm = document.getElementById('customerForm');
     
-    // REGISTRATION PAGE
+
     if (regForm) {
         var usernameInput = document.getElementById('username');
         var passwordInput = document.getElementById('password');
@@ -46,7 +46,7 @@ window.addEventListener('load', function() {
         });
     }
     
-    // LOGIN PAGE
+  
     if (loginForm) {
         var usernameInput = document.getElementById('username');
         var passwordInput = document.getElementById('password');
@@ -76,8 +76,7 @@ window.addEventListener('load', function() {
             }
         });
     }
-    
-    // CUSTOMER PROFILE 
+
     if (customerForm) {
         var usernameInput = document.getElementById('username');
         var passwordInput = document.getElementById('password');
@@ -159,12 +158,12 @@ function checkUsername(usernameInput) {
     return true;
 }
 
-// Function to check password
+
 function checkPassword(passwordInput) {
     var password = passwordInput.value;
     var errorSpan = document.getElementById('passwordError');
     
-    // Check length 
+
     if (password.length < 10) {
         passwordInput.classList.add('invalid');
         passwordInput.classList.remove('valid');
@@ -179,7 +178,7 @@ function checkPassword(passwordInput) {
     return true;
 }
 
-// Function to check confirm password 
+
 function checkConfirmPassword(passwordInput, confirmInput) {
     var password = passwordInput.value;
     var confirm = confirmInput.value;
