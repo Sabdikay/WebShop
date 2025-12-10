@@ -10,7 +10,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const input = document.getElementById("priceInput");
     const output = document.getElementById("priceWithTaxOutput");
 
-    if (!btn) return;
 
     btn.addEventListener("click", function () {
         let price = parseFloat(input.value);
