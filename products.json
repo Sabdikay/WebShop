@@ -6,6 +6,8 @@
             "description": "The wow Shirt offers premium comfort and comes with a very catchy design. Made from 65% recycled material.",
             "imagepath": "./Webshop%20pictures/wow.png",
             "price": 20.00,
+            "sizes": ["XS","S","M","L","XL","XXL"],
+            "material": "65% recycled cotton",
             "category": "Men",
             "subcategory": "Mens T-Shirts"
         },
@@ -15,6 +17,8 @@
             "description": "The Relationship Status Shirt offers premium comfort and comes with a very catchy design. Made from 65% recycled material.",
             "imagepath": "./Webshop%20pictures/relationship%20status.png",
             "price": 20.00,
+            "sizes": ["XS","S","M","L","XL","XXL"],
+            "material": "65% recycled cotton",
             "category": "Men",
             "subcategory": "Mens T-Shirts"
         },
@@ -24,6 +28,8 @@
             "description": "The Brain Power Hoodie offers premium comfort and comes with a very catchy design. Made from 65% recycled material.",
             "imagepath": "./Webshop%20pictures/brain%20power.png",
             "price": 40.00,
+            "sizes": ["XS","S","M","L","XL","XXL"],
+            "material": "65% recycled cotton",
             "category": "Men",
             "subcategory": "Mens Hoodies"
         },
@@ -33,6 +39,8 @@
             "description": "The Owl Hoodie offers premium comfort and comes with a very catchy design. Made from 65% recycled material.",
             "imagepath": "./Webshop%20pictures/owl.png",
             "price": 40.00,
+            "sizes": ["XS","S","M","L","XL","XXL"],
+            "material": "65% recycled cotton",
             "category": "Men",
             "subcategory": "Mens Hoodies"
         },
@@ -42,6 +50,8 @@
             "description": "The Plans with Cat Shirt offers premium comfort and comes with a very catchy design. Made from 65% recycled material.",
             "imagepath": "./Webshop%20pictures/plans%20with%20cat.png",
             "price": 20.00,
+            "sizes": ["XS","S","M","L","XL","XXL"],
+            "material": "65% recycled cotton",
             "category": "Women",
             "subcategory": "Womens Hoodies"
         },
@@ -51,6 +61,8 @@
             "description": "The What I Am Doing Shirt offers premium comfort and comes with a very catchy design. Made from 65% recycled material.",
             "imagepath": "./Webshop%20pictures/what%20i%20am%20doing.png",
             "price": 20.00,
+            "sizes": ["XS","S","M","L","XL","XXL"],
+            "material": "65% recycled cotton",
             "category": "Women",
             "subcategory": "Womens Hoodies"
         },
@@ -60,6 +72,8 @@
             "description": "The Pikachu Hoodie offers premium comfort and comes with a very catchy design. Made from 65% recycled material.",
             "imagepath": "./Webshop%20pictures/pikachu.png",
             "price": 40.00,
+            "sizes": ["XS","S","M","L","XL","XXL"],
+            "material": "65% recycled cotton",
             "category": "Women",
             "subcategory": "Womens Hoodies"
         },
@@ -69,6 +83,8 @@
             "description": "The Stressed Hoodie offers premium comfort and comes with a very catchy design. Made from 65% recycled material.",
             "imagepath": "./Webshop%20pictures/stressed.png",
             "price": 40.00,
+            "sizes": ["XS","S","M","L","XL","XXL"],
+            "material": "65% recycled cotton",
             "category": "Women",
             "subcategory": "Womens Hoodies"
         }
