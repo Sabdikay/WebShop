@@ -1,67 +1,72 @@
+<?php
+// Load JSON
+$jsonPath = __DIR__ . "/products.json";
+$products = [];
+$error = "";
+
+if (!file_exists($jsonPath)) {
+    $error = "Product data file not found!";
+} else {
+    $jsonContent = file_get_contents($jsonPath);
+    $data = json_decode($jsonContent, true);
+
+    if ($data === null) {
+        $error = "Could not decode JSON.";
+    } else {
+        $products = $data["product"];
+    }
+}
+
+// Filter Men's Hoodies
+$filteredProducts = [];
+foreach ($products as $p) {
+    if ($p["category"] === "Men" && $p["subcategory"] === "Mens Hoodies") {
+        $filteredProducts[] = $p;
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>List of Men's Hoodies</title>
-    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue&family=Bangers&family=Fredoka+One&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="mystyle.css">
+    <title>Men's Hoodies</title>
+    <link rel="stylesheet" href="mystyle.css">
 </head>
+
 <body class="men-page">
-<?php
-// Page variables
-$heading = "Here are all the Hoodies we offer for men:";
-$darkMode = "🌙 Dark Mode";
 
-// hoodies associative array
-$products = [
-    [
-        'id' => 3,
-        'name' => 'Brain Power Hoodie',
-        'image' => 'Webshop pictures/brain power.png',
-        'price' => 40.00,
-        'link' => 'product.php?id=3&type=hoodie'
-    ],
-    [
-        'id' => 4,
-        'name' => 'Owl Hoodie',
-        'image' => 'Webshop pictures/owl.png',
-        'price' => 40.00,
-        'link' => 'product.php?id=4&type=hoodie'
-    ]
-];
-?>
-<header>
-    <div class="header-container">
-        <div class="theme-controls">
-            <button id="darkToggleBtn"><?php echo $darkMode; ?></button>
-        </div>
-    </div>
-</header>
+<h2>Men's Hoodies</h2>
 
-    <?php
-    echo "<h2>" . $heading . "</h2>";
-    ?>
+<?php if (!empty($error)) : ?>
+    <p style="color:red;"><?php echo $error; ?></p>
+<?php else : ?>
 
     <div class="product-section">
         <ol class="product-list">
-            <?php
-            // Dynamically generate product list
-            foreach ($products as $product) {
-                echo '<li class="product-item">';
-                echo '<img src="' . $product['image'] . '" alt="' . $product['name'] . '" width="150">';
-                echo '<p>' . $product['name'] . '</p>';
-                echo '<p>Price: ' . number_format($product['price'], 2) . ' €</p>';
-                echo '<a href="' . $product['link'] . '">Details</a>';
-                echo '</li>';
-                echo '<br>';
-            }
-            ?>
+
+            <?php foreach ($filteredProducts as $product) : ?>
+                <li class="product-item">
+
+                    <img src="<?php echo $product['imagepath']; ?>" 
+                         alt="<?php echo htmlspecialchars($product['name']); ?>" 
+                         width="150">
+
+                    <p><?php echo htmlspecialchars($product['name']); ?></p>
+                    <p>Price: <?php echo number_format($product['price'], 2); ?> €</p>
+
+                    <a href="product.php?pid=<?php echo $product['pid']; ?>">Details</a>
+                </li>
+                <br>
+            <?php endforeach; ?>
+
+            <?php if (empty($filteredProducts)) : ?>
+                <p>No products found in this category.</p>
+            <?php endif; ?>
+
         </ol>
     </div>
 
-    <p><a href="index.php">Back to Homepage</a></p>
+<?php endif; ?>
 
-<script src="task2.js"></script>
 </body>
 </html>

@@ -1,66 +1,71 @@
+<?php
+// Load JSON
+$jsonPath = __DIR__ . "/products.json";
+$products = [];
+$error = "";
+
+if (!file_exists($jsonPath)) {
+    $error = "Product data file not found!";
+} else {
+    $jsonContent = file_get_contents($jsonPath);
+    $data = json_decode($jsonContent, true);
+
+    if ($data === null) {
+        $error = "Could not decode JSON.";
+    } else {
+        $products = $data["product"];
+    }
+}
+
+// Filter Women's T-Shirts (will be empty)
+$filteredProducts = [];
+foreach ($products as $p) {
+    if ($p["category"] === "Women" && $p["subcategory"] === "Womens T-Shirts") {
+        $filteredProducts[] = $p;
+    }
+}
+?>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>List of Women's T-Shirts</title>
-    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue&family=Bangers&family=Fredoka+One&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="mystyle.css">
+    <title>Women's T-Shirts</title>
+    <link rel="stylesheet" href="mystyle.css">
 </head>
-<body class="men-page">
-<?php
-// Page variables
-$heading = "Here are all the T-Shirts we offer for women:";
-$darkMode = "🌙 Dark Mode";
 
-// Products array
-$products = [
-    [
-        'id' => 5,
-        'name' => 'Plans with Cat Shirt',
-        'image' => 'Webshop pictures/plans with cat.png',
-        'price' => 20.00,
-        'link' => 'product.php?id=5&type=tshirt'
-    ],
-    [
-        'id' => 6,
-        'name' => 'What I Am Doing Shirt',
-        'image' => 'Webshop pictures/What i am doing.png',
-        'price' => 20.00,
-        'link' => 'product.php?id=6&type=tshirt'
-    ]
-];
-?>
-<header>
-    <div class="header-container">
-        <div class="theme-controls">
-            <button id="darkToggleBtn"><?php echo $darkMode; ?></button>
-        </div>
-    </div>
-</header>
+<body class="women-page">
 
-    <?php
-    echo "<h2>" . $heading . "</h2>";
-    ?>
+<h2>Women's T-Shirts</h2>
+
+<?php if (!empty($error)) : ?>
+    <p style="color:red;"><?php echo $error; ?></p>
+<?php else : ?>
 
     <div class="product-section">
         <ol class="product-list">
-            <?php
-            // Dynamically generate product list
-            foreach ($products as $product) {
-                echo '<li class="product-item">';
-                echo '<img src="' . $product['image'] . '" alt="' . $product['name'] . '" width="150">';
-                echo '<p>' . $product['name'] . '</p>';
-                echo '<p>Price: ' . number_format($product['price'], 2) . ' €</p>';
-                echo '<a href="' . $product['link'] . '">Details</a>';
-                echo '</li>';
-            }
-            ?>
+
+            <?php foreach ($filteredProducts as $product) : ?>
+                <li class="product-item">
+
+                    <img src="<?php echo $product['imagepath']; ?>" 
+                         alt="<?php echo htmlspecialchars($product['name']); ?>" 
+                         width="150">
+
+                    <p><?php echo htmlspecialchars($product['name']); ?></p>
+                    <p>Price: <?php echo number_format($product['price'], 2); ?> €</p>
+
+                    <a href="product.php?pid=<?php echo $product['pid']; ?>">Details</a>
+                </li>
+            <?php endforeach; ?>
+
+            <?php if (empty($filteredProducts)) : ?>
+                <p>No products found in this category.</p>
+            <?php endif; ?>
+
         </ol>
     </div>
 
-    <p><a href="index.php">Back to Homepage</a></p>
+<?php endif; ?>
 
-<script src="task2.js"></script>
 </body>
 </html>
