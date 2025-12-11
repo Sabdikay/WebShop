@@ -30,19 +30,31 @@ foreach ($products as $p) {
 <head>
     <meta charset="UTF-8">
     <title>Men's Hoodies</title>
-    <link rel="stylesheet" href="mystyle.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue&family=Bangers&family=Fredoka+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="mystyle.css">
 </head>
 
 <body class="men-page">
 
+<header>
+    <div class="header-container">
+        <div class="theme-controls">
+            <button id="darkToggleBtn">🌙 Dark Mode</button>
+        </div>
+    </div>
+</header>
+
 <h2>Men's Hoodies</h2>
 
 <?php if (!empty($error)) : ?>
+
     <p style="color:red;"><?php echo $error; ?></p>
+
 <?php else : ?>
 
     <div class="product-section">
-        <ol class="product-list">
+        <ul class="product-list">
 
             <?php foreach ($filteredProducts as $product) : ?>
                 <li class="product-item">
@@ -67,6 +79,10 @@ foreach ($products as $p) {
     </div>
 
 <?php endif; ?>
+
+<p><a href="index.php">Back to Homepage</a></p>
+
+<script src="task2.js"></script>
 
 </body>
 </html>

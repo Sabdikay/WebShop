@@ -4,20 +4,19 @@ $jsonPath = __DIR__ . "/products.json";
 $products = [];
 $error = "";
 
-if (!file_exists($jsonPath)) {
-    $error = "Product data file not found!";
-} else {
+if (file_exists($jsonPath)) {
     $jsonContent = file_get_contents($jsonPath);
     $data = json_decode($jsonContent, true);
-
-    if ($data === null) {
-        $error = "Could not decode JSON.";
-    } else {
+    if ($data !== null) {
         $products = $data["product"];
+    } else {
+        $error = "Could not decode JSON.";
     }
+} else {
+    $error = "Product data file not found!";
 }
 
-// Filter Women's Hoodies
+// Filter Women Hoodies
 $filteredProducts = [];
 foreach ($products as $p) {
     if ($p["category"] === "Women" && $p["subcategory"] === "Womens Hoodies") {
@@ -29,44 +28,61 @@ foreach ($products as $p) {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Women's Hoodies</title>
-    <link rel="stylesheet" href="mystyle.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue&family=Bangers&family=Fredoka+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="mystyle.css">
 </head>
 
-<body class="women-page">
+<body class="men-page">
+
+<header>
+    <div class="header-container">
+        <div class="theme-controls">
+            <button id="darkToggleBtn">🌙 Dark Mode</button>
+        </div>
+    </div>
+</header>
 
 <h2>Women's Hoodies</h2>
 
 <?php if (!empty($error)) : ?>
+
     <p style="color:red;"><?php echo $error; ?></p>
+
 <?php else : ?>
 
     <div class="product-section">
-        <ol class="product-list">
+        <div class="product-list">
 
             <?php foreach ($filteredProducts as $product) : ?>
-                <li class="product-item">
+                <div class="product-item">
 
-                    <img src="<?php echo $product['imagepath']; ?>" 
-                         alt="<?php echo htmlspecialchars($product['name']); ?>" 
+                    <img src="<?php echo $product['imagepath']; ?>"
+                         alt="<?php echo htmlspecialchars($product['name']); ?>"
                          width="150">
 
                     <p><?php echo htmlspecialchars($product['name']); ?></p>
                     <p>Price: <?php echo number_format($product['price'], 2); ?> €</p>
 
                     <a href="product.php?pid=<?php echo $product['pid']; ?>">Details</a>
-                </li>
-                <br>
+
+                </div>
             <?php endforeach; ?>
 
             <?php if (empty($filteredProducts)) : ?>
                 <p>No products found in this category.</p>
             <?php endif; ?>
 
-        </ol>
+        </div>
     </div>
 
 <?php endif; ?>
+
+<p><a href="index.php">Back to Homepage</a></p>
+
+<script src="task2.js"></script>
 
 </body>
 </html>
