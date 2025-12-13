@@ -618,6 +618,19 @@ body.dark-mode main p {
     width: 90%;
 }
 
+.product-list {
+    list-style: none;
+    padding-left: 0;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+
+.product-item {
+    list-style: none;
+    text-align: center;
+}
+
 
 
 
