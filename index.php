@@ -22,7 +22,7 @@ $darkMode = "🌙 Dark Mode";
 $bestSellerName = "Owl Hoodie";
 $bestSellerPrice = "€40.00";
 $bestSellerImage = "Webshop pictures/owl.png";
-$bestSellerLink = "owlHoodie.html";
+$bestSellerLink = "product.php?pid=4";
 ?>
 
 	<header>
