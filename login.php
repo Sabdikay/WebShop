@@ -1,3 +1,37 @@
+<?php
+session_start();
+
+$errorMessage = "";
+
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+
+    $username = $_POST['username'] ?? '';
+    $password = $_POST['password'] ?? '';
+
+    $usersFile = "users.json";
+
+    if (file_exists($usersFile)) {
+        $users = json_decode(file_get_contents($usersFile), true);
+
+        foreach ($users as $user) {
+            if (
+                $user['username'] === $username &&
+                $user['password'] === $password
+            ) {
+
+                $_SESSION['userId'] = $user['userId'];
+                $_SESSION['isAdmin'] = $user['isAdmin'];
+
+                header("Location: customer.php");
+                exit;
+            }
+        }
+    }
+
+    $errorMessage = "Invalid username or password.";
+}
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -27,16 +61,23 @@ $darkMode = "🌙 Dark Mode";
         echo "<h1>" . $pageHeading . "</h1>";
         ?>
         <hr>
-        <form id="loginForm">
+        <form id="loginForm" method="post">
             <label><?php echo $usernameLabel; ?></label>
             <input type="text" id="username">
             <span id="usernameError" class="error"></span>
             <br>
 
             <label><?php echo $passwordLabel; ?></label>
-            <input type="password" id="password">
+            <input type="password" id="password" name="password">
             <span id="passwordError" class="error"></span>
             <br><br>
+
+            <?php
+if (!empty($errorMessage)) {
+    echo "<p style='color:red;'>$errorMessage</p>";
+}
+?>
+
 
             <a href="registration.php"><button type="button"><?php echo $notRegisteredText; ?></button></a>
             <br><br>
