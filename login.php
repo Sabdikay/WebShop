@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <head>
         <title>Login Page</title>
         <link href="https://fonts.googleapis.com/css2?family=Comic+Neue&family=Bangers&family=Fredoka+One&display=swap" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="mystyle.css">
+    <link rel="stylesheet" type="text/css" href="mystyle.css">
     </head>
     <body>
 <?php
@@ -61,9 +61,9 @@ $darkMode = "🌙 Dark Mode";
         echo "<h1>" . $pageHeading . "</h1>";
         ?>
         <hr>
-        <form id="loginForm" method="post">
+        <form id="loginForm" method="post" action="login.php">
             <label><?php echo $usernameLabel; ?></label>
-            <input type="text" id="username">
+            <input type="text" id="username" name = "username">
             <span id="usernameError" class="error"></span>
             <br>
 
@@ -86,7 +86,7 @@ if (!empty($errorMessage)) {
 
         <p class="men-page"><a href="index.php">Back to Homepage</a></p>
 
-        <script src="forms.js"></script>
+        <script src="forms.js?v=2"></script>
         <script src="task2.js"></script>
     </body>
 </html>
