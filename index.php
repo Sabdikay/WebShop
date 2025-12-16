@@ -118,5 +118,6 @@ $bestSellerLink = "product.php?pid=4";
 
 <script src="task2.js"></script>
 <script src="productSuggestion.js"></script>
+<script src="cartIcon.js"></script>
 </body>
 </html>
