@@ -54,7 +54,7 @@ foreach ($products as $p) {
 <?php else : ?>
 
     <div class="product-section">
-        <ul class="product-list">
+        <ol class="product-list">
 
             <?php foreach ($filteredProducts as $product) : ?>
                 <li class="product-item">
