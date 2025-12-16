@@ -31,7 +31,6 @@ window.addEventListener('load', function() {
         
 
         regForm.addEventListener('submit', function(event) {
-            event.preventDefault();
             
             var usernameOK = checkUsername(usernameInput);
             var passwordOK = checkPassword(passwordInput);
@@ -39,7 +38,6 @@ window.addEventListener('load', function() {
             
             if (usernameOK && passwordOK && confirmOK) {
                 alert('Registration successful!');
-                window.location.href = 'login.html';
             } else {
                 alert('Please fix the errors');
             }
@@ -68,11 +66,9 @@ window.addEventListener('load', function() {
             var usernameOK = checkUsername(usernameInput);
             var passwordOK = checkPassword(passwordInput);
             
-            if (usernameOK && passwordOK) {
-                alert('Login successful!');
-                window.location.href = 'customer.html';
-            } else {
-                alert('Please fix the errors');
+            if (!usernameOK && !passwordOK) {
+                event.preventDefault();
+                alert('Invalid username and password');
             }
         });
     }

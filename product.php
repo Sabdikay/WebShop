@@ -1,7 +1,4 @@
 <?php
-// ----------------------------------------------
-// Product Page Logic (Single Product Mode)
-// ----------------------------------------------
 
 $errorMessage = "";
 $selectedProduct = null;

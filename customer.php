@@ -21,6 +21,9 @@ $password = "ichweißnicht";
 <header>
     <div class="header-container">
         <div class="theme-controls">
+          <a href="customerOrders.php">
+    <button type="button">My Orders</button>
+</a>
             <button id="darkToggleBtn"><?php echo $darkMode; ?></button>
         </div>
     </div>
