@@ -1,0 +1,30 @@
+[
+  {
+    "userId": 1,
+    "username": "AliUser",
+    "password": "password123",
+    "isBlocked": false,
+    "isAdmin": false
+  },
+  {
+    "userId": 2,
+    "username": "TestUser",
+    "password": "testpassword",
+    "isBlocked": false,
+    "isAdmin": false
+  },
+  {
+    "userId": 3,
+    "username": "BlockedUser",
+    "password": "blockedpass1",
+    "isBlocked": true,
+    "isAdmin": false
+  },
+  {
+    "userId": 99,
+    "username": "AdminUser",
+    "password": "adminpassword",
+    "isBlocked": false,
+    "isAdmin": true
+  }
+]
