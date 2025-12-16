@@ -1,0 +1,29 @@
+{
+    "cart_id": "cart_7ncb4nr3ocbbuapd1pjlk72gsp",
+    "created": "2025-12-16T22:54:51",
+    "last_updated": "2025-12-16T23:03:54",
+    "items": [
+        {
+            "pid": 4,
+            "name": "Owl Hoodie",
+            "price": 40,
+            "quantity": 3,
+            "subtotal": 120,
+            "imagepath": ".\/Webshop%20pictures\/owl.png"
+        },
+        {
+            "pid": 1,
+            "name": "wow Shirt",
+            "price": 20,
+            "quantity": 12,
+            "subtotal": 240,
+            "imagepath": ".\/Webshop%20pictures\/wow.png"
+        }
+    ],
+    "totals": {
+        "subtotal": 360,
+        "tax": 68.400000000000005684341886080801486968994140625,
+        "discount": 0,
+        "total": 428.3999999999999772626324556767940521240234375
+    }
+}

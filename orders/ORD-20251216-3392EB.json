@@ -1,0 +1,38 @@
+{
+    "order_number": "ORD-20251216-3392EB",
+    "user_id": 1,
+    "order_date": "2025-12-16 22:44:35",
+    "status": "completed",
+    "items": [
+        {
+            "pid": 1,
+            "name": "wow Shirt",
+            "price": 20,
+            "quantity": 1,
+            "subtotal": 20,
+            "imagepath": ".\/Webshop%20pictures\/wow.png"
+        },
+        {
+            "pid": 6,
+            "name": "What I Am Doing Shirt",
+            "price": 20,
+            "quantity": 1,
+            "subtotal": 20,
+            "imagepath": ".\/Webshop%20pictures\/what%20i%20am%20doing.png"
+        }
+    ],
+    "totals": {
+        "subtotal": 40,
+        "tax": 7.5999999999999996447286321199499070644378662109375,
+        "discount": 0,
+        "total": 47.60000000000000142108547152020037174224853515625
+    },
+    "shipping_address": {
+        "name": "e3e3ee3e3",
+        "address": "e3e3e3e3",
+        "city": "e3e3e3e3e3",
+        "postal_code": "e3e3e3e",
+        "country": "Germany"
+    },
+    "payment_method": "bank_transfer"
+}
