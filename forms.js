@@ -61,12 +61,11 @@ window.addEventListener('load', function() {
         
 
         loginForm.addEventListener('submit', function(event) {
-            event.preventDefault();
             
             var usernameOK = checkUsername(usernameInput);
             var passwordOK = checkPassword(passwordInput);
             
-            if (!usernameOK && !passwordOK) {
+            if (!usernameOK || !passwordOK) {
                 event.preventDefault();
                 alert('Invalid username and password');
             }
