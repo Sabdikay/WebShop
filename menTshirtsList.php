@@ -1,7 +1,5 @@
 <?php
-// ---------------------------
-// Load the JSON file
-// ---------------------------
+
 $jsonPath = __DIR__ . "/products.json";
 $products = [];
 $error = "";
@@ -20,9 +18,7 @@ if (!file_exists($jsonPath)) {
     }
 }
 
-// ---------------------------
-// Filter for Men's T-Shirts
-// ---------------------------
+
 $filteredProducts = [];
 
 foreach ($products as $p) {
