@@ -8,36 +8,50 @@ if (!isset($_SESSION['userId'])) {
 }
 
 $userId = $_SESSION['userId'];
-$ordersFile = "orders.json";
-
-/* Load Orders */
 $orders = [];
+$orderFiles = glob("orders/*.json"); // path to your orders folder
 
-if (file_exists($ordersFile)) {
-    $jsonData = file_get_contents($ordersFile);
-    $orders = json_decode($jsonData, true);
+foreach ($orderFiles as $file) {
+    $orderData = json_decode(file_get_contents($file), true);
+
+    if (isset($orderData['user_id']) && $orderData['user_id'] == $userId) {
+        $orders[] = $orderData;
+    }
 }
 
-/* Handle Cancel Request */
+
+
+
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['cancelOrderId'])) {
 
     $cancelOrderId = $_POST['cancelOrderId'];
 
-    foreach ($orders as &$order) {
+    // Build file path for this order
+    $orderFile = "orders/" . $cancelOrderId . ".json";
+
+    if (file_exists($orderFile)) {
+
+        $orderData = json_decode(file_get_contents($orderFile), true);
+
+        // Safety checks
         if (
-            $order['orderId'] == $cancelOrderId &&
-            $order['userId'] == $userId &&
-            $order['state'] === "ordered"
+            $orderData['user_id'] == $userId &&
+            $orderData['status'] === "ordered"
         ) {
-            $order['state'] = "canceled";
+            $orderData['status'] = "canceled";
+
+            file_put_contents(
+                $orderFile,
+                json_encode($orderData, JSON_PRETTY_PRINT)
+            );
         }
     }
 
-    file_put_contents($ordersFile, json_encode($orders, JSON_PRETTY_PRINT));
     header("Location: customerOrders.php");
     exit;
 }
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
