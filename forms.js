@@ -92,16 +92,14 @@ window.addEventListener('load', function() {
         
 
         customerForm.addEventListener('submit', function(event) {
-            event.preventDefault();
             
             var usernameOK = checkUsername(usernameInput);
             var passwordOK = checkPassword(passwordInput);
             
-            if (usernameOK && passwordOK) {
-                alert('Profile updated successfully!');
-            } else {
+            if (!usernameOK && !passwordOK) {
+                event.preventDefault();
                 alert('Please fix the errors');
-            }
+            } 
         });
     }
 });
