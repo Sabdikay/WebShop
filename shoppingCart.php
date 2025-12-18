@@ -49,10 +49,10 @@ $darkMode = "🌙 Dark Mode";
         </nav>
         <div class="header-icons">
             <a href="customer.php" class="profile-btn">
-                <span class="btn-text">Profile</span>
+                <span class="btn-text">👤Profile</span>
             </a>
             <a href="shoppingCart.php" class="cart-btn">
-                <span class="btn-text">Cart</span>
+                <span class="btn-text">🛒Cart</span>
             </a>
             <div class="theme-controls">
                 <button id="darkToggleBtn" class="profile-btn"><?php echo $darkMode; ?></button>

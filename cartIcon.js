@@ -45,5 +45,3 @@ function updateCartDisplay() {
 
 // Update cart display on page load
 document.addEventListener('DOMContentLoaded', updateCartDisplay);
-
-document.head.appendChild(style);
