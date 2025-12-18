@@ -1,3 +1,28 @@
+<?php
+session_start();
+
+// Security check
+if (!isset($_SESSION['userId'])) {
+    header("Location: login.php");
+    exit;
+}
+
+$userId = $_SESSION['userId'];
+$usersFile = "users.json";
+
+$users = json_decode(file_get_contents($usersFile), true);
+
+// Find logged-in user
+foreach ($users as $user) {
+    if ($user['userId'] == $userId) {
+        $username = $user['username'];
+        $password = $user['password'];
+        break;
+    }
+}
+?>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,9 +37,6 @@
 // Page variables
 $pageHeading = "Customer Profile";
 $darkMode = "🌙 Dark Mode";
-// Customer data variables
-$username = "Ben.Smith";
-$password = "ichweißnicht";
 ?>
 
 
