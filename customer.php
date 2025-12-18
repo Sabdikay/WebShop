@@ -41,9 +41,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // Save changes
     file_put_contents($usersFile, json_encode($users, JSON_PRETTY_PRINT));
     $successMessage = "Profile updated successfully!";
-}
 
-// Load current user data for display
+    // Load current user data for display
 foreach ($users as $user) {
     if ($user['userId'] == $userId) {
         $username = $user['username'];
@@ -51,6 +50,9 @@ foreach ($users as $user) {
         break;
     }
 }
+}
+
+
 ?>
 
 
