@@ -72,15 +72,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['cancelOrderId'])) {
 $hasOrders = false;
 
 foreach ($orders as $order) {
-    if ($order['userId'] == $userId) {
+    if ($order['user_id'] == $userId) {
         $hasOrders = true;
         ?>
         <div class="product-card" style="margin:20px auto;">
-            <h2>Order #<?= htmlspecialchars($order['orderId']) ?></h2>
+            <h2>Order #<?= htmlspecialchars($order['order_number']) ?></h2>
 
-            <p><strong>Status:</strong> <?= htmlspecialchars($order['state']) ?></p>
+            <p><strong>Status:</strong> <?= htmlspecialchars($order['status']) ?></p>
 
-            <?php if ($order['state'] === "rejected"): ?>
+            <?php if ($order['status'] === "rejected"): ?>
                 <p style="color:red;">
                     <strong>Reason:</strong>
                     <?= htmlspecialchars($order['rejectionReason']) ?>
@@ -103,7 +103,7 @@ foreach ($orders as $order) {
                 <?php endforeach; ?>
             </table>
 
-            <p><strong>Total:</strong> <?= number_format($order['total'], 2) ?> €</p>
+            <p><strong>Total:</strong> <?= number_format($order['totals']['total'], 2) ?> €</p>
 
             <?php if ($order['discountApplied'] > 0): ?>
                 <p style="color:green;">
@@ -111,9 +111,9 @@ foreach ($orders as $order) {
                 </p>
             <?php endif; ?>
 
-            <?php if ($order['state'] === "ordered"): ?>
+            <?php if ($order['status'] === "ordered"): ?>
                 <form method="post">
-                    <input type="hidden" name="cancelOrderId" value="<?= $order['orderId'] ?>">
+                    <input type="hidden" name="cancelOrderId" value="<?= $order['order_number'] ?>">
                     <button type="submit">Cancel Order</button>
                 </form>
             <?php endif; ?>
@@ -127,6 +127,7 @@ if (!$hasOrders) {
     echo "<p>You have not placed any orders yet.</p>";
 }
 ?>
+
 
 </main>
 
