@@ -26,13 +26,13 @@ function updateCartDisplay() {
                         // Change cart icon text to show it has items
                         const btnText = cartBtn.querySelector('.btn-text');
                         if (btnText) {
-                            btnText.textContent = `Cart (${itemCount})`;
+                            btnText.textContent = `🛒Cart (${itemCount})`;
                         }
                     } else {
                         // Reset to empty cart
                         const btnText = cartBtn.querySelector('.btn-text');
                         if (btnText) {
-                            btnText.textContent = 'Cart';
+                            btnText.textContent = '🛒Cart';
                         }
                     }
                 }
