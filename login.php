@@ -22,8 +22,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $_SESSION['userId'] = $user['userId'];
                 $_SESSION['isAdmin'] = $user['isAdmin'];
 
-                header("Location: customer.php");
-                exit;
+                if ($user['isAdmin']) {
+    header("Location: adminOrders.php");
+} else {
+    header("Location: customer.php");
+}
+exit;
+
             }
         }
     }
