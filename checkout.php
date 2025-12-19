@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'order_number' => $orderNumber,
         'user_id' => $userId,
         'order_date' => date('Y-m-d H:i:s'),
-        'status' => 'completed',
+        'status' => 'ordered',
         'items' => $cartData['items'],
         'totals' => $cartData['totals'],
         'shipping_address' => [
