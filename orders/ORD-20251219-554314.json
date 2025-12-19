@@ -2,7 +2,7 @@
     "order_number": "ORD-20251219-554314",
     "user_id": 2,
     "order_date": "2025-12-19 13:27:33",
-    "status": "ordered",
+    "status": "processing",
     "items": [
         {
             "pid": 7,

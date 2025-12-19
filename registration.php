@@ -71,7 +71,7 @@ $darkMode = "🌙 Dark Mode";
         <hr>
         <form id="regForm" method="post">
             <label><?php echo $usernameLabel; ?></label> 
-            <input type="text" id="username">
+            <input type="text" id="username" name="username">
             <span id="usernameError" class="error"></span> 
             <br>
             <label><?php echo $passwordLabel; ?></label>

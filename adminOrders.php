@@ -59,8 +59,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 <main>
 
-<?php foreach ($ordersByState as $state => $orders): ?>
-    <h2><?= ucfirst($state) ?> Orders</h2>
+<?php foreach ($ordersByStatus as $status => $orders): ?>
+    <h2><?= ucfirst($status) ?> Orders</h2>
 
     <?php if (empty($orders)): ?>
         <p>No orders.</p>
@@ -68,12 +68,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     <?php foreach ($orders as $order): ?>
         <div class="product-card">
-            <h3>Order #<?= $order['orderId'] ?></h3>
-            <p>Status: <?= $order['state'] ?></p>
+            <h3>Order #<?= $order['order_number'] ?></h3>
+            <p>Status: <?= $order['status'] ?></p>
 
-            <?php if ($state === "ordered"): ?>
+            <?php if ($status === "ordered"): ?>
                 <form method="post">
-                    <input type="hidden" name="orderId" value="<?= $order['orderId'] ?>">
+                    <input type="hidden" name="orderId" value="<?= $order['order_number'] ?>">
                     <button name="sendOrder">Mark as Sent</button>
                     <br><br>
                     <textarea name="reason" placeholder="Reason for rejection"></textarea>

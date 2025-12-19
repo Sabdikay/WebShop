@@ -21,10 +21,17 @@
         "isAdmin": false
     },
     {
-        "userId": 99,
+        "userId": 4,
         "username": "AdminUser",
         "password": "adminpassword",
         "isBlocked": false,
         "isAdmin": true
+    },
+    {
+        "userId": 5,
+        "username": "RandomUser",
+        "password": "randompassword",
+        "isBlocked": false,
+        "isAdmin": false
     }
 ]

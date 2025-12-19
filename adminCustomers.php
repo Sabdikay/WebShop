@@ -19,6 +19,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     exit;
 }
 ?>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin – Customers</title>
+    <link rel="stylesheet" href="mystyle.css">
+</head>
+<body>
 
 <h1>Manage Customers</h1>
 
@@ -37,3 +44,5 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         </div>
     <?php endif; ?>
 <?php endforeach; ?>
+</body>
+</html>

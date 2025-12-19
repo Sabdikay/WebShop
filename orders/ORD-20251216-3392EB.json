@@ -2,7 +2,7 @@
     "order_number": "ORD-20251216-3392EB",
     "user_id": 1,
     "order_date": "2025-12-16 22:44:35",
-    "status": "ordered",
+    "status": "rejected",
     "rejectionReason": "Out of Stock",
     "items": [
         {
