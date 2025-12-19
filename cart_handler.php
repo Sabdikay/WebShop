@@ -71,12 +71,17 @@ function calculateTotals(&$cartData) {
     }
     
     $tax = $subtotal * 0.19; // 19% tax
-    $total = $subtotal + $tax - $cartData['totals']['discount'];
-    
+    $discountAmount = 0;
+    if (isset($cartData['discount_percent'])) {
+        $discountAmount = ($subtotal * $cartData['discount_percent']) / 100;
+    }
+    $total = $subtotal + $tax - $discountAmount;
     $cartData['totals']['subtotal'] = round($subtotal, 2);
     $cartData['totals']['tax'] = round($tax, 2);
+    $cartData['totals']['discount'] = round($discountAmount, 2);
     $cartData['totals']['total'] = round($total, 2);
 }
+
 
 // Function to find product by pid
 function findProduct($products, $pid) {
@@ -87,6 +92,42 @@ function findProduct($products, $pid) {
     }
     return null;
 }
+
+function countPreviousOrders($userId) {
+    $orderFiles = glob(__DIR__ . "/orders/*.json");
+    $count = 0;
+
+    foreach ($orderFiles as $file) {
+        $order = json_decode(file_get_contents($file), true);
+
+        if (
+            isset($order['userId'], $order['state']) &&
+            $order['userId'] == $userId &&
+            in_array($order['state'], ['completed', 'processing'])
+        ) {
+            $count++;
+        }
+    }
+
+    return $count;
+}
+
+function getDiscountPercent($userId) {
+    $previousOrders = countPreviousOrders($userId);
+    $nextOrderNumber = $previousOrders + 1;
+
+    if ($nextOrderNumber % 20 === 0) {
+        return 20;
+    }
+
+    if ($nextOrderNumber % 10 === 0) {
+        return 10;
+    }
+
+    return 0;
+}
+
+
 
 // Handle POST requests
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -125,7 +166,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     'imagepath' => $product['imagepath']
                 ];
             }
-            
+            $cartData['discount_percent'] = getDiscountPercent($_SESSION['userId']);
             calculateTotals($cartData);
             saveCart($cartFile, $cartData);
             
@@ -147,6 +188,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
             
             if ($updated) {
+                $cartData['discount_percent'] = getDiscountPercent($_SESSION['userId']);
                 calculateTotals($cartData);
                 saveCart($cartFile, $cartData);
                 echo json_encode(['success' => true, 'message' => 'Cart updated']);
@@ -163,6 +205,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $cartData['items'] = array_values($cartData['items']); // Reindex array
             
             if (count($cartData['items']) < $originalCount) {
+                $cartData['discount_percent'] = getDiscountPercent($_SESSION['userId']);
                 calculateTotals($cartData);
                 saveCart($cartFile, $cartData);
                 echo json_encode(['success' => true, 'message' => 'Item removed']);
@@ -173,6 +216,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
         case 'clear':
             $cartData['items'] = [];
+            $cartData['discount_percent'] = getDiscountPercent($_SESSION['userId']);
             calculateTotals($cartData);
             saveCart($cartFile, $cartData);
             echo json_encode(['success' => true, 'message' => 'Cart cleared']);

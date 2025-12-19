@@ -24,6 +24,9 @@ if (!file_exists($cartFile)) {
 }
 
 $cartData = json_decode(file_get_contents($cartFile), true);
+$discountAmount = $cartData['totals']['discount'] ?? 0;
+$totalAfterDiscount = $cartData['totals']['total'] ?? 0;
+
 
 if (empty($cartData['items'])) {
     header("Location: shoppingCart.php");
@@ -51,7 +54,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'order_date' => date('Y-m-d H:i:s'),
         'status' => 'ordered',
         'items' => $cartData['items'],
-        'totals' => $cartData['totals'],
+        'totals' => [
+    'subtotal' => $cartData['totals']['subtotal'],
+    'tax' => $cartData['totals']['tax'],
+    'discount' => $discountAmount,
+    'total' => $totalAfterDiscount
+],
+
         'shipping_address' => [
             'name' => $_POST['fullname'] ?? '',
             'address' => $_POST['address'] ?? '',

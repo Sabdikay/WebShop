@@ -23,9 +23,14 @@ $cartData = [
     ]
 ];
 
+
+
 if (file_exists($cartFile)) {
     $cartData = json_decode(file_get_contents($cartFile), true);
 }
+$discountAmount = $cartData['totals']['discount'] ?? 0;
+$totalAfterDiscount = $cartData['totals']['total'] ?? 0;
+
 
 $darkMode = "🌙 Dark Mode";
 ?>
@@ -118,9 +123,16 @@ $darkMode = "🌙 Dark Mode";
                 <span>Tax (19%):</span>
                 <span>€<?php echo number_format($cartData['totals']['tax'], 2); ?></span>
             </div>
+            <?php if ($discountAmount > 0): ?>
+<div class="summary-row">
+    <span>Discount:</span>
+    <span>-€<?php echo number_format($discountAmount, 2); ?></span>
+</div>
+<?php endif; ?>
+
             <div class="summary-row total">
                 <span>Total:</span>
-                <span>€<?php echo number_format($cartData['totals']['total'], 2); ?></span>
+                <span>€<?php echo number_format($totalAfterDiscount, 2); ?></span>
             </div>
             
             <button class="checkout-btn" 

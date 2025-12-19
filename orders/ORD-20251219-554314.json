@@ -1,0 +1,38 @@
+{
+    "order_number": "ORD-20251219-554314",
+    "user_id": 2,
+    "order_date": "2025-12-19 13:27:33",
+    "status": "ordered",
+    "items": [
+        {
+            "pid": 7,
+            "name": "Pikachu Hoodie",
+            "price": 40,
+            "quantity": 1,
+            "subtotal": 40,
+            "imagepath": ".\/Webshop%20pictures\/pikachu.png"
+        },
+        {
+            "pid": 8,
+            "name": "Stressed Hoodie",
+            "price": 40,
+            "quantity": 1,
+            "subtotal": 40,
+            "imagepath": ".\/Webshop%20pictures\/stressed.png"
+        }
+    ],
+    "totals": {
+        "subtotal": 80,
+        "tax": 15.199999999999999289457264239899814128875732421875,
+        "discount": 0,
+        "total": 95.2000000000000028421709430404007434844970703125
+    },
+    "shipping_address": {
+        "name": "Test",
+        "address": "Test Strasse ",
+        "city": "Teststadt",
+        "postal_code": "85090",
+        "country": "Germany"
+    },
+    "payment_method": "credit_card"
+}
