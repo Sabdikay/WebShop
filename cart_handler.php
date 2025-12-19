@@ -1,5 +1,14 @@
 <?php
 session_start();
+
+$users = json_decode(file_get_contents("users.json"), true);
+
+foreach ($users as $user) {
+    if ($user['userId'] == $_SESSION['userId'] && $user['isBlocked']) {
+        die("Your account is blocked. You cannot place orders.");
+    }
+}
+
 header('Content-Type: application/json');
 
 // Get cart session ID

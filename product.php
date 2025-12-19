@@ -1,4 +1,17 @@
 <?php
+$isBlocked = false;
+
+if (isset($_SESSION['userId'])) {
+    $users = json_decode(file_get_contents("users.json"), true);
+
+    foreach ($users as $user) {
+        if ($user['user_id'] == $_SESSION['userId']) {
+            $isBlocked = $user['isBlocked'];
+            break;
+        }
+    }
+}
+
 
 // Product Page Logic (Single Product Mode)
 
@@ -123,10 +136,22 @@ if (!isset($_GET["pid"])) {
     <input type="number" id="quantity" min="1" value="1" style="width: 80px; padding: 8px; margin: 0 10px;" />
     <p id="quantityWarning" style="color: red; margin: 10px 0;"></p>
     
-    <button class="add-to-cart-btn" onclick="addToCart(<?php echo $selectedProduct['pid']; ?>)">
+    <?php if ($isBlocked): ?>
+    <button class="add-to-cart-btn" disabled>
         Add to Shopping Cart
     </button>
-    <span id="addToCartMessage" style="margin-left: 15px; color: green; font-weight: bold;"></span>
+    <span style="margin-left:15px; color:red; font-weight:bold;">
+        Your account is blocked by the administrator.
+    </span>
+<?php else: ?>
+    <button class="add-to-cart-btn"
+        onclick="addToCart(<?php echo $selectedProduct['pid']; ?>)">
+        Add to Shopping Cart
+    </button>
+    <span id="addToCartMessage"
+          style="margin-left:15px; color:green; font-weight:bold;"></span>
+<?php endif; ?>
+
 </div>
 
             <!-- Collection List -->
