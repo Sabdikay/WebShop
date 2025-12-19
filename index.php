@@ -1,16 +1,18 @@
 <?php
+session_start();
 $isBlocked = false;
 
 if (isset($_SESSION['userId'])) {
-    $users = json_decode(file_get_contents("users.json"), true);
+    $users = json_decode(file_get_contents(__DIR__ . "/users.json"), true);
 
     foreach ($users as $user) {
-        if ($user['user_id'] == $_SESSION['userId']) {
+        if ($user['userId'] == $_SESSION['userId']) {
             $isBlocked = $user['isBlocked'];
             break;
         }
     }
 }
+
 ?>
 
 
@@ -53,10 +55,7 @@ $bestSellerLink = "product.php?pid=4";
 					<span class="btn-text">Profile</span>
 				</a>
 				<?php if ($isBlocked): ?>
-    <button disabled title="Your account is blocked">
-        🛒 Shopping Cart
-    </button>
-    <p style="color:red; margin-top:5px;">
+    <p style="color:red;">
         Your account is blocked by the administrator.
     </p>
 <?php else: ?>

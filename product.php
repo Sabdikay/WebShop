@@ -1,11 +1,12 @@
 <?php
+session_start();
 $isBlocked = false;
 
 if (isset($_SESSION['userId'])) {
-    $users = json_decode(file_get_contents("users.json"), true);
+    $users = json_decode(file_get_contents(__DIR__ . "/users.json"), true);
 
     foreach ($users as $user) {
-        if ($user['user_id'] == $_SESSION['userId']) {
+        if ($user['userId'] == $_SESSION['userId']) {
             $isBlocked = $user['isBlocked'];
             break;
         }
@@ -137,9 +138,6 @@ if (!isset($_GET["pid"])) {
     <p id="quantityWarning" style="color: red; margin: 10px 0;"></p>
     
     <?php if ($isBlocked): ?>
-    <button class="add-to-cart-btn" disabled>
-        Add to Shopping Cart
-    </button>
     <span style="margin-left:15px; color:red; font-weight:bold;">
         Your account is blocked by the administrator.
     </span>

@@ -1,27 +1,27 @@
 [
     {
-        "user_id": 1,
+        "userId": 1,
         "username": "AliUser",
         "password": "password123",
         "isBlocked": false,
         "isAdmin": false
     },
     {
-        "user_id": 2,
+        "userId": 2,
         "username": "TestUser",
         "password": "testpassword",
-        "isBlocked": true,
+        "isBlocked": false,
         "isAdmin": false
     },
     {
-        "user_id": 3,
+        "userId": 3,
         "username": "BlockedUser",
         "password": "blockedpass1",
         "isBlocked": true,
         "isAdmin": false
     },
     {
-        "user_id": 99,
+        "userId": 99,
         "username": "AdminUser",
         "password": "adminpassword",
         "isBlocked": false,
