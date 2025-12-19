@@ -7,7 +7,7 @@ if (!isset($_SESSION['userId']) || $_SESSION['isAdmin'] !== true) {
     exit;
 }
 
-$ordersByState = [
+$ordersByStatus = [
     "ordered" => [],
     "processing" => [],
     "rejected" => [],
@@ -18,7 +18,7 @@ $ordersByState = [
 $orderFiles = glob("orders/*.json");
 foreach ($orderFiles as $file) {
     $order = json_decode(file_get_contents($file), true);
-    $ordersByState[$order['state']][] = $order;
+    $ordersByStatus[$order['status']][] = $order;
 }
 
 // Handle status updates
@@ -29,11 +29,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $order = json_decode(file_get_contents($orderFile), true);
 
     if (isset($_POST['sendOrder'])) {
-        $order['state'] = "processing";
+        $order['status'] = "processing";
     }
 
     if (isset($_POST['rejectOrder'])) {
-        $order['state'] = "rejected";
+        $order['status'] = "rejected";
         $order['rejectionReason'] = $_POST['reason'];
     }
 
