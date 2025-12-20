@@ -9,7 +9,7 @@ if (!isset($_SESSION['userId'])) {
 
 $userId = $_SESSION['userId'];
 $orders = [];
-$orderFiles = glob("orders/*.json"); // path to your orders folder
+$orderFiles = glob("orders/*.json"); 
 
 foreach ($orderFiles as $file) {
     $orderData = json_decode(file_get_contents($file), true);
