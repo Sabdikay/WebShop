@@ -57,8 +57,13 @@ $totalAfterDiscount = $cartData['totals']['total'] ?? 0;
             <a href="shoppingCart.php" class="cart-btn">
                 <span class="btn-text">🛒Cart</span>
             </a>
+            <div class="theme-controls">
+            <button id="darkToggleBtn">🌙 Dark Mode</button>
         </div>
+        </div>
+        
     </div>
+    
 </header>
 <hr>
 

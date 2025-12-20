@@ -102,6 +102,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <header>
         <div class="header-container">
             <h1>MemeShop</h1>
+            <div class="theme-controls">
+            <button id="darkToggleBtn">🌙 Dark Mode</button>
+        </div>
     </header>
     <hr>
 
@@ -182,7 +185,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         </div>
                     </div>
 
-                    <div style="margin: 15px 0; padding: 10px; border: 1px solid #000; background: #fff;">
+                    <div class="form-section">
                         <label><input type="checkbox" name="is_gift"> 🎁 Is this a gift?</label><br>
                         <textarea name="gift_message" placeholder="Optional gift message..."
                             style="width: 100%; margin-top: 5px;"></textarea>

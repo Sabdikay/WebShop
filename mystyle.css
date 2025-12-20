@@ -722,6 +722,16 @@ body.dark-mode main p {
     gap: 10px;
 }
 
+body.dark-mode .cart-item, body.dark-mode .cart-items {
+    background-color: #2a2a2a;
+    border-color: #444;
+}
+
+body.dark-mode .cart-item-details,
+body.dark-mode .cart-item-name {
+    color: #f1f1f1;
+}
+
 .quantity-btn {
     background: #4CAF50;
     color: white;
@@ -764,6 +774,12 @@ body.dark-mode main p {
     padding: 20px;
     max-width: 400px;
     margin-left: auto;
+}
+
+body.dark-mode .cart-summary {
+    background-color: #2a2a2a;
+    border-color: #444;
+    color: #f1f1f1;
 }
 
 .summary-row {
@@ -870,6 +886,10 @@ body.dark-mode main p {
     padding: 30px;
     border-radius: 8px;
 }
+body.dark-mode .checkout-form {
+    background-color: #2a2a2a;
+    color: #f1f1f1;
+}
 
 .form-section {
     margin-bottom: 30px;
@@ -922,6 +942,11 @@ body.dark-mode main p {
     padding-bottom: 10px;
 }
 
+body.dark-mode .order-summary {
+    background-color: #2a2a2a;
+    border-color: #444;
+    color: #f1f1f1;
+}
 .order-item {
     display: flex;
     justify-content: space-between;
@@ -1018,6 +1043,12 @@ body.dark-mode main p {
 .payment-option:has(input:checked) {
     border-color: #4CAF50;
     background: #e8f5e9;
+}
+
+body.dark-mode .payment-option:has(input:checked) {
+    border-color: #444;
+    text-align: center;
+    background: #333;
 }
 
 /* The "MemeShop Grey" Button */

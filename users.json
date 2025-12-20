@@ -33,5 +33,12 @@
         "password": "randompassword",
         "isBlocked": false,
         "isAdmin": false
+    },
+    {
+        "userId": 6,
+        "username": "S4ad132",
+        "password": "1234567890",
+        "isBlocked": false,
+        "isAdmin": false
     }
 ]

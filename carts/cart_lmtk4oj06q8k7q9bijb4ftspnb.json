@@ -1,0 +1,22 @@
+{
+    "cart_id": "cart_lmtk4oj06q8k7q9bijb4ftspnb",
+    "created": "2025-12-20T20:49:21",
+    "last_updated": "2025-12-20T20:49:21",
+    "items": [
+        {
+            "pid": 4,
+            "name": "Owl Hoodie",
+            "price": 40,
+            "quantity": 1,
+            "subtotal": 40,
+            "imagepath": ".\/Webshop%20pictures\/owl.png"
+        }
+    ],
+    "totals": {
+        "subtotal": 40,
+        "tax": 7.6,
+        "discount": 0,
+        "total": 47.6
+    },
+    "discount_percent": 0
+}

@@ -1,0 +1,34 @@
+{
+    "order_number": "ORD-20251220-5E4DC2",
+    "user_id": 6,
+    "order_date": "2025-12-20 20:07:01",
+    "status": "canceled",
+    "items": [
+        {
+            "pid": 1,
+            "name": "wow Shirt",
+            "price": 20,
+            "quantity": 1,
+            "subtotal": 20,
+            "imagepath": ".\/Webshop%20pictures\/wow.png"
+        }
+    ],
+    "totals": {
+        "subtotal": 20,
+        "tax": 3.8,
+        "discount": 0,
+        "total": 23.8
+    },
+    "gift_option": {
+        "is_gift": true,
+        "message": ""
+    },
+    "shipping_address": {
+        "name": "uh",
+        "address": "uh",
+        "city": "uh",
+        "postal_code": "09",
+        "country": "Germany"
+    },
+    "payment_method": "credit_card"
+}
