@@ -85,8 +85,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $orderSuccess = true;
 }
-
-$darkMode = "🌙 Dark Mode";
 ?>
 <!DOCTYPE html>
 <html>
@@ -104,12 +102,6 @@ $darkMode = "🌙 Dark Mode";
     <header>
         <div class="header-container">
             <h1>MemeShop</h1>
-            <div class="header-icons">
-                <div class="theme-controls">
-                    <button id="darkToggleBtn" class="profile-btn"><?php echo $darkMode; ?></button>
-                </div>
-            </div>
-        </div>
     </header>
     <hr>
 
