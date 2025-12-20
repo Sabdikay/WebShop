@@ -25,6 +25,13 @@ if (!isset($_GET["pid"])) {
     $errorMessage = "Parameter 'pid' is missing in the URL!";
 } else {
     $pid = $_GET["pid"];
+    if (!isset($_SESSION['viewed'])) {
+        $_SESSION['viewed'] = [];
+    }
+    if (!in_array($pid, $_SESSION['viewed'])) {
+        array_unshift($_SESSION['viewed'], $pid);
+        $_SESSION['viewed'] = array_slice($_SESSION['viewed'], 0, 4);
+    }
 
     if (empty($pid)) {
         $errorMessage = "No value for the parameter 'pid'!";
@@ -44,7 +51,7 @@ if (!isset($_GET["pid"])) {
                 // 3) Search for product
                 if (isset($data["product"])) {
                     foreach ($data["product"] as $product) {
-                        if ((string)$product["pid"] === (string)$pid) {
+                        if ((string) $product["pid"] === (string) $pid) {
                             $selectedProduct = $product;
                             break;
                         }
@@ -63,18 +70,20 @@ if (!isset($_GET["pid"])) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
-        <?php 
-            echo $selectedProduct ? htmlspecialchars($selectedProduct["name"]) . " - Product Information" 
-                                  : "Product Details";
+        <?php
+        echo $selectedProduct ? htmlspecialchars($selectedProduct["name"]) . " - Product Information"
+            : "Product Details";
         ?>
     </title>
 
     <!-- Fonts + CSS -->
-    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue&family=Bangers&family=Fredoka+One&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue&family=Bangers&family=Fredoka+One&display=swap"
+        rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="mystyle.css" />
 </head>
 
@@ -82,177 +91,211 @@ if (!isset($_GET["pid"])) {
 <header>
     <div class="header-container">
         <div class="theme-controls">
-            <button id="darkToggleBtn">Dark Mode</button>
+            <button id="darkToggleBtn">🌙 Dark Mode</button>
         </div>
     </div>
 </header>
 
 <body class="product-page">
 
-<header class="product-header">
-    <h1 id="productName">
-        <?php echo $selectedProduct ? htmlspecialchars($selectedProduct["name"]) : "Product Details"; ?>
-    </h1>
+    <header class="product-header">
+        <h1 id="productName">
+            <?php echo $selectedProduct ? htmlspecialchars($selectedProduct["name"]) : "Product Details"; ?>
+        </h1>
 
-    <nav class="product-nav">
-    <a href="index.php">Home</a>
-    <a href="index.php">Back to Homepage</a>
-    <a href="shoppingCart.php">Shopping Cart</a>
-</nav>
-</header>
+        <nav class="product-nav">
+            <a href="index.php">Home</a>
+            <a href="index.php">Back to Homepage</a>
+            <a href="shoppingCart.php">Shopping Cart</a>
+        </nav>
+    </header>
 
-<main class="product-main">
-    <section class="product-details">
+    <main class="product-main">
+        <section class="product-details">
 
-        <?php if (!empty($errorMessage)) : ?>
+            <?php if (!empty($errorMessage)): ?>
 
-            <p style="color:red;"><?php echo htmlspecialchars($errorMessage); ?></p>
+                <p style="color:red;"><?php echo htmlspecialchars($errorMessage); ?></p>
 
-        <?php else : ?>
+            <?php else: ?>
 
-            <!-- Product Image -->
-            <?php if (!empty($selectedProduct["imagepath"])) : ?>
-                <img src="<?php echo htmlspecialchars($selectedProduct["imagepath"]); ?>" 
-                     alt="<?php echo htmlspecialchars($selectedProduct["name"]); ?>" 
-                     width="200" />
+                <!-- Product Image -->
+                <?php if (!empty($selectedProduct["imagepath"])): ?>
+                    <img src="<?php echo htmlspecialchars($selectedProduct["imagepath"]); ?>"
+                        alt="<?php echo htmlspecialchars($selectedProduct["name"]); ?>" width="200" />
+                <?php endif; ?>
+
+                <!-- Price -->
+                <h2>Price: €<?php echo number_format($selectedProduct["price"], 2); ?></h2>
+
+                <!-- Description -->
+                <p><?php echo htmlspecialchars($selectedProduct["description"]); ?></p>
+
+                <!-- Basic Details -->
+                <ul>
+                    <li><strong>Material:</strong> <?php echo htmlspecialchars($selectedProduct["material"]); ?></li>
+                    <li><strong>Available Sizes:</strong>
+                        <?php echo implode(", ", $selectedProduct["sizes"]); ?>
+                    </li>
+                </ul>
+
+                <!-- Add to Cart Section -->
+                <div style="margin: 20px 0; padding: 20px; background: #f9f9f9; border-radius: 5px;">
+                    <label for="quantity"><strong>Quantity:</strong></label>
+                    <input type="number" id="quantity" min="1" value="1"
+                        style="width: 80px; padding: 8px; margin: 0 10px;" />
+                    <p id="quantityWarning" style="color: red; margin: 10px 0;"></p>
+
+                    <?php if ($isBlocked): ?>
+                        <span style="margin-left:15px; color:red; font-weight:bold;">
+                            Your account is blocked by the administrator.
+                        </span>
+                    <?php else: ?>
+                        <button class="add-to-cart-btn" onclick="addToCart(<?php echo $selectedProduct['pid']; ?>)">
+                            Add to Shopping Cart
+                        </button>
+                        <span id="addToCartMessage" style="margin-left:15px; color:green; font-weight:bold;"></span>
+                    <?php endif; ?>
+
+                </div>
+
+                <!-- Collection List -->
+                <button id="addToCollectionBtn" class="add-to-cart-btn">Add to Collection List</button>
+
+                <div id="collectionList">
+                    <h3>Your Collection List:</h3>
+                    <ul id="collectionItems"></ul>
+                </div>
+
+                <!-- Price Calculator -->
+                <h3>Price Calculator</h3>
+
+                <label for="priceInput">Price without tax (€):</label>
+                <input type="number" id="priceInput" min="0" step="0.01" />
+
+                <button id="calcPriceBtn" class="add-to-cart-btn">Calculate Price with Tax</button>
+                <p id="priceWithTaxOutput"></p>
+
             <?php endif; ?>
 
-            <!-- Price -->
-            <h2>Price: €<?php echo number_format($selectedProduct["price"], 2); ?></h2>
+            <section class="reviews"
+                style="max-width: 800px; margin: 40px auto; padding: 20px; background: #fff; border: 2px solid #000; border-radius: 15px;">
+                <h3 style="font-family: 'Bangers';">Meme Reviews</h3>
+                <div id="displayReviews">
+                    <?php
+                    $revFile = __DIR__ . "/reviews.json";
+                    if (file_exists($revFile)) {
+                        $allRev = json_decode(file_get_contents($revFile), true);
+                        foreach ($allRev as $r) {
+                            if ($r['pid'] == $pid) {
+                                echo "<div style='border-bottom: 1px dashed #ccc; padding: 10px 0;'>";
+                                echo "<strong>" . htmlspecialchars($r['user']) . "</strong> " . str_repeat("⭐", $r['rating']) . "<br>";
+                                echo "<p>" . htmlspecialchars($r['comment']) . "</p></div>";
+                            }
+                        }
+                    }
+                    ?>
+                </div>
+                <?php if (isset($_SESSION['userId'])): ?>
+                    <form action="submit_review.php" method="POST" style="margin-top: 20px;">
+                        <input type="hidden" name="pid" value="<?= $pid ?>">
+                        <select name="rating">
+                            <option value="5">⭐⭐⭐⭐⭐</option>
+                            <option value="4">⭐⭐⭐⭐</option>
+                            <option value="3">⭐⭐⭐</option>
+                            <option value="2">⭐⭐</option>
+                            <option value="1">⭐</option>
+                        </select><br>
+                        <textarea name="comment" placeholder="Your review..." required
+                            style="width: 100%; margin: 10px 0;"></textarea><br>
+                        <button type="submit" class="add-to-cart-btn">Post Review</button>
+                    </form>
+                <?php endif; ?>
+            </section>
 
-            <!-- Description -->
-            <p><?php echo htmlspecialchars($selectedProduct["description"]); ?></p>
+        </section>
+    </main>
 
-            <!-- Basic Details -->
-            <ul>
-                <li><strong>Material:</strong> <?php echo htmlspecialchars($selectedProduct["material"]); ?></li>
-                <li><strong>Available Sizes:</strong> 
-                    <?php echo implode(", ", $selectedProduct["sizes"]); ?>
-                </li>
-            </ul>
+    <footer class="product-footer">
+        <p>&copy; 2025 WebShop – All rights reserved.</p>
+    </footer>
 
-            <!-- Add to Cart Section -->
-<div style="margin: 20px 0; padding: 20px; background: #f9f9f9; border-radius: 5px;">
-    <label for="quantity"><strong>Quantity:</strong></label>
-    <input type="number" id="quantity" min="1" value="1" style="width: 80px; padding: 8px; margin: 0 10px;" />
-    <p id="quantityWarning" style="color: red; margin: 10px 0;"></p>
-    
-    <?php if ($isBlocked): ?>
-    <span style="margin-left:15px; color:red; font-weight:bold;">
-        Your account is blocked by the administrator.
-    </span>
-<?php else: ?>
-    <button class="add-to-cart-btn"
-        onclick="addToCart(<?php echo $selectedProduct['pid']; ?>)">
-        Add to Shopping Cart
-    </button>
-    <span id="addToCartMessage"
-          style="margin-left:15px; color:green; font-weight:bold;"></span>
-<?php endif; ?>
+    <!-- JS Scripts -->
+    <script src="task2.js"></script>
+    <script src="collectionList.js"></script>
+    <script src="taxCalculator.js"></script>
 
-</div>
+    <script>
+        function addToCart(pid) {
+            const quantityInput = document.getElementById('quantity');
+            const quantity = parseInt(quantityInput.value);
+            const messageSpan = document.getElementById('addToCartMessage');
+            const warningP = document.getElementById('quantityWarning');
 
-            <!-- Collection List -->
-            <button id="addToCollectionBtn" class="add-to-cart-btn">Add to Collection List</button>
+            // Validate quantity
+            warningP.textContent = '';
+            messageSpan.textContent = '';
 
-            <div id="collectionList">
-                <h3>Your Collection List:</h3>
-                <ul id="collectionItems"></ul>
-            </div>
+            if (quantity < 1) {
+                warningP.textContent = 'Quantity must be at least 1';
+                return;
+            }
 
-            <!-- Price Calculator -->
-            <h3>Price Calculator</h3>
+            if (quantity > 99) {
+                warningP.textContent = 'Maximum quantity is 99';
+                return;
+            }
 
-            <label for="priceInput">Price without tax (€):</label>
-            <input type="number" id="priceInput" min="0" step="0.01" />
+            // Send to cart handler
+            const formData = new FormData();
+            formData.append('action', 'add');
+            formData.append('pid', pid);
+            formData.append('quantity', quantity);
 
-            <button id="calcPriceBtn" class="add-to-cart-btn">Calculate Price with Tax</button>
-            <p id="priceWithTaxOutput"></p>
+            fetch('cart_handler.php', {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        messageSpan.textContent = '✓ Added to cart!';
+                        setTimeout(() => {
+                            messageSpan.textContent = '';
+                        }, 3000);
 
-        <?php endif; ?>
-
-    </section>
-</main>
-
-<footer class="product-footer">
-    <p>&copy; 2025 WebShop – All rights reserved.</p>
-</footer>
-
-<!-- JS Scripts -->
-<script src="task2.js"></script>
-<script src="collectionList.js"></script>
-<script src="taxCalculator.js"></script>
-
-<script>
-function addToCart(pid) {
-    const quantityInput = document.getElementById('quantity');
-    const quantity = parseInt(quantityInput.value);
-    const messageSpan = document.getElementById('addToCartMessage');
-    const warningP = document.getElementById('quantityWarning');
-    
-    // Validate quantity
-    warningP.textContent = '';
-    messageSpan.textContent = '';
-    
-    if (quantity < 1) {
-        warningP.textContent = 'Quantity must be at least 1';
-        return;
-    }
-    
-    if (quantity > 99) {
-        warningP.textContent = 'Maximum quantity is 99';
-        return;
-    }
-    
-    // Send to cart handler
-    const formData = new FormData();
-    formData.append('action', 'add');
-    formData.append('pid', pid);
-    formData.append('quantity', quantity);
-    
-    fetch('cart_handler.php', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            messageSpan.textContent = '✓ Added to cart!';
-            setTimeout(() => {
-                messageSpan.textContent = '';
-            }, 3000);
-            
-            // Update cart icon if needed
-            updateCartIcon(data.itemCount);
-        } else {
-            warningP.textContent = 'Error: ' + data.message;
+                        // Update cart icon if needed
+                        updateCartIcon(data.itemCount);
+                    } else {
+                        warningP.textContent = 'Error: ' + data.message;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    warningP.textContent = 'Failed to add to cart. Please try again.';
+                });
         }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        warningP.textContent = 'Failed to add to cart. Please try again.';
-    });
-}
 
-function updateCartIcon(itemCount) {
-    // This function can be used to update a cart badge showing number of items
-    console.log('Cart now has ' + itemCount + ' items');
-}
+        function updateCartIcon(itemCount) {
+            // This function can be used to update a cart badge showing number of items
+            console.log('Cart now has ' + itemCount + ' items');
+        }
 
-// Validate quantity input in real-time
-document.getElementById('quantity').addEventListener('input', function() {
-    const warningP = document.getElementById('quantityWarning');
-    const value = parseInt(this.value);
-    
-    if (value < 1) {
-        warningP.textContent = 'Quantity must be at least 1';
-    } else if (value > 99) {
-        warningP.textContent = 'Maximum quantity is 99';
-    } else {
-        warningP.textContent = '';
-    }
-});
-</script>
+        // Validate quantity input in real-time
+        document.getElementById('quantity').addEventListener('input', function () {
+            const warningP = document.getElementById('quantityWarning');
+            const value = parseInt(this.value);
+
+            if (value < 1) {
+                warningP.textContent = 'Quantity must be at least 1';
+            } else if (value > 99) {
+                warningP.textContent = 'Maximum quantity is 99';
+            } else {
+                warningP.textContent = '';
+            }
+        });
+    </script>
 
 </body>
+
 </html>

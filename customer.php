@@ -77,7 +77,7 @@ $darkMode = "🌙 Dark Mode";
     <div class="header-container">
         <div class="theme-controls">
           <a href="customerOrders.php">
-    <button type="button">My Orders</button>
+    <button type="button" class="profile-btn">My Orders</button>
 </a>
             <button id="darkToggleBtn"><?php echo $darkMode; ?></button>
         </div>
@@ -89,11 +89,11 @@ $darkMode = "🌙 Dark Mode";
  ?>
  <form id="customerForm" method="post">
   <label>Username:</label><br>
-  <input type="text" id="username" name="username" value="<?php echo $username; ?>">
+  <input type="text" value="<?php echo htmlspecialchars($username ?? ''); ?>">
   <span id="usernameError" class="error"></span>
   <br>
   <label>Password:</label><br>
-  <input type="text" id="password" name="password" value="<?php echo $password; ?>">
+  <input type="text" id="password" name="password" value="<?php echo htmlspecialchars($password ?? ''); ?>">
   <span id="passwordError" class="error"></span><br><br>
   <?php
 if (!empty($successMessage)) {

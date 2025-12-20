@@ -77,20 +77,50 @@ button:hover {
     gap: 25px;
 }
 
-.profile-btn,.cart-btn {
-    padding: 10px 20px;
-    border: 2px solid black;
-    border-radius: 25px;
-    text-decoration: none;
-    color: black;
-    font-size: 14px;
+.profile-btn, 
+.cart-btn, 
+#darkToggleBtn {
+    /* Base Colors & Background */
+    background-color: rgb(39, 37, 37) !important; 
+    color: white !important;
     
+    /* Border & Shape */
+    border: 3px solid #000 !important;
+    border-radius: 25px !important;
+    padding: 10px 20px !important;
+    
+    /* Text Styling */
+    text-decoration: none !important;
+    font-weight: bold !important;
+    font-size: 14px !important;
+    font-family: inherit !important;
+    
+    /* Layout & Shadow */
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer !important;
+    box-shadow: 4px 4px 0px green !important;
+    transition: all 0.2s ease !important;
 }
 
-.profile-btn:hover,.cart-btn:hover {
-    background-color: green;
-    color: white;
-    border-color: green;
+/* Unified Hover State */
+.profile-btn:hover, 
+.cart-btn:hover, 
+#darkToggleBtn:hover {
+    background-color: green !important;
+    color: white !important;
+    box-shadow: 2px 2px 0px black !important;
+    transform: translate(2px, 2px);
+    border-color: #000 !important;
+}
+
+/* Specific adjustment for Dark Mode */
+body.dark-mode .profile-btn,
+body.dark-mode .cart-btn,
+body.dark-mode #darkToggleBtn {
+    border-color: #fff !important; /* White border to pop against dark header */
+    background-color: rgb(39, 37, 37) !important;
 }
 
 
@@ -990,7 +1020,221 @@ body.dark-mode main p {
     background: #e8f5e9;
 }
 
+/* GLOBAL LOCK: The "MemeShop Grey" Button */
+#darkToggleBtn {
+    background-color: rgb(39, 37, 37) !important; /* Your brand grey */
+    color: white !important;               /* Black text for contrast */
+    border: 3px solid #000 !important;    /* Thick black border */
+    padding: 10px 20px !important;
+    border-radius: 25px !important;
+    font-weight: bold !important;
+    font-family: inherit !important;
+    cursor: pointer !important;
+    display: inline-block !important;
+    box-shadow: 4px 4px 0px green !important; /* Green shadow stays for the pop */
+    transition: all 0.2s ease !important;
+}
 
+/* Hover Effect */
+#darkToggleBtn:hover {
+    background-color: green !important;
+    color: white !important;
+    box-shadow: 2px 2px 0px black !important;
+    transform: translate(2px, 2px); /* "Pressed" feel */
+}
+
+/* Ensure it stays the same grey in Dark Mode so it doesn't disappear */
+body.dark-mode #darkToggleBtn {
+    background-color: rgb(39, 37, 37) !important;
+    color: white !important;
+    border-color: #fff !important; /* White border in dark mode to separate from background */
+}
+
+/* Centering the Best Sellers Section */
+.best-sellers-section {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.best-sellers-container {
+    display: flex;
+    justify-content: center; /* This centers the items horizontally */
+    align-items: stretch;
+    gap: 30px;              /* Space between the two cards */
+    margin: 20px auto;
+    max-width: 1000px;      /* Prevents cards from spreading too far on huge screens */
+}
+
+/* Ensure individual cards look consistent */
+.best-sellers-container .product-card {
+    flex: 0 1 300px;        /* Limits card width to 300px */
+    margin: 0;              /* Remove default margins that might interfere with flex centering */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Subtle depth */
+}
+
+/* Fix for the suggestion box to remain centered below the cards */
+.suggestion-box {
+    margin-top: 40px;
+    width: 100%;
+}
+
+/* Specific Dark Mode overrides for index.php product cards */
+body.dark-mode .product-card {
+    background-color: #2a2a2a; /* Slightly lighter grey than the #121212 body background */
+    border-color: #444;       /* Subtle border for definition */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Deep shadow for a floating effect */
+}
+
+body.dark-mode .product-card h3,
+body.dark-mode .product-card p.price {
+    color: #f1f1f1; /* Ensure text is readable against the grey box */
+}
+
+body.dark-mode .product-card a {
+    color: #90ee90; /* Light green for links inside the grey card */
+}
+
+/* Fix for Men/Women List Page Text in Dark Mode */
+body.dark-mode.men-page .nav-container h2,
+body.dark-mode.men-page .category-list a,
+body.dark-mode.men-page .product-section h1,
+body.dark-mode.men-page .product-item p,
+body.dark-mode.men-page .footer-container h3,
+body.dark-mode.men-page .back-home a {
+    color: #ffffff !important; /* Forces text to White */
+}
+
+/* Ensure the 'Browse Categories' header is visible */
+body.dark-mode.men-page h2 {
+    color: #ffffff !important;
+}
+
+/* Keeping your brand green for the hover state so it still feels interactive */
+body.dark-mode.men-page .category-list a:hover,
+body.dark-mode.men-page .back-home a:hover {
+    color: #90ee90 !important;
+}
+
+/* If the product price is inside the .product-item, make it white too */
+body.dark-mode.men-page .product-item {
+    color: #ffffff !important;
+}
+
+/* --- FINAL PRODUCT PAGE DARK MODE OVERRIDES --- */
+
+/* 1. Fix the main Product Details container and text */
+body.dark-mode.product-page .product-details {
+    background-color: #2a2a2a !important; /* Lighter grey box */
+    color: #ffffff !important;
+    border: 1px solid #444 !important;
+}
+
+/* 2. Fix the white background on the Quantity/Cart section */
+body.dark-mode.product-page .product-details div[style*="background: #f9f9f9"] {
+    background-color: #333333 !important; /* Darker interior box */
+    border: 1px solid #555 !important;
+}
+
+/* 3. Fix the white background on the Review section */
+body.dark-mode.product-page .reviews {
+    background-color: #2a2a2a !important; /* Match the product details box */
+    border: 2px solid #555 !important;
+    color: #ffffff !important;
+}
+
+/* 4. Force all text inside these sections to be white */
+body.dark-mode.product-page .product-details h2,
+body.dark-mode.product-page .product-details h3,
+body.dark-mode.product-page .product-details p,
+body.dark-mode.product-page .product-details label,
+body.dark-mode.product-page .product-details li,
+body.dark-mode.product-page .reviews h3,
+body.dark-mode.product-page .reviews strong,
+body.dark-mode.product-page .reviews p {
+    color: #ffffff !important;
+}
+
+/* 5. Improve input visibility in dark mode */
+body.dark-mode.product-page input,
+body.dark-mode.product-page textarea,
+body.dark-mode.product-page select {
+    background-color: #1e1e1e !important;
+    color: #ffffff !important;
+    border: 1px solid #90ee90 !important; /* Green border for inputs */
+}
+
+/* 6. Fix for the "Back to Homepage" and nav links in header */
+body.dark-mode.product-page .product-header {
+    background-color: #1e1e1e !important;
+}
+body.dark-mode.product-page .product-header h1 {
+    color: #ffffff !important;
+}
+
+/* --- LOGIN & REGISTRATION FORM FIX --- */
+
+/* Target inputs specifically on auth-heavy pages */
+body.dark-mode .auth-section input,
+body.dark-mode .registration-page input,
+body.dark-mode .login-page input,
+body.dark-mode form input {
+    background-color: #2a2a2a !important; /* Lighter grey than background */
+    color: #ffffff !important;           /* White text for typing */
+    border: 2px solid green !important;  /* Keep the signature green border */
+}
+
+/* Fix for the white background on autocomplete/saved passwords */
+body.dark-mode input:-webkit-autofill,
+body.dark-mode input:-webkit-autofill:hover, 
+body.dark-mode input:-webkit-autofill:focus {
+    -webkit-text-fill-color: #ffffff !important;
+    -webkit-box-shadow: 0 0 0px 1000px #2a2a2a inset !important;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+/* Ensure any secondary text or "Not Registered?" sections are white */
+body.dark-mode .auth-section,
+body.dark-mode .auth-section p,
+body.dark-mode .auth-section label {
+    color: #ffffff !important;
+}
+
+/* --- CUSTOMER PAGE FINAL THEME SYNC --- */
+
+/* Force My Orders button to match Profile/Cart buttons */
+body.dark-mode .my-orders-btn, 
+body.dark-mode a[href="my_orders.php"],
+body.dark-mode .header-container a.btn {
+    background-color: rgb(39, 37, 37) !important;
+    color: white !important;
+    border: 3px solid #ffffff !important;
+    padding: 10px 20px !important;
+    border-radius: 25px !important;
+    text-decoration: none !important;
+    display: inline-flex !important;
+    box-shadow: 4px 4px 0px green !important;
+}
+
+body.dark-mode .my-orders-btn:hover {
+    background-color: green !important;
+    box-shadow: 2px 2px 0px white !important;
+}
+
+/* Final hammer for any remaining white inputs on Login/Register/Profile */
+body.dark-mode input, 
+body.dark-mode textarea, 
+body.dark-mode select {
+    background-color: #2a2a2a !important; /* Lighter grey */
+    color: #ffffff !important;           /* White text */
+    border: 2px solid green !important;
+}
+
+/* Fix for the white 'Quantity' and 'Reviews' boxes from your screenshot */
+body.dark-mode .product-details div[style*="background: #f9f9f9"],
+body.dark-mode .reviews[style*="background: #fff"] {
+    background-color: #2a2a2a !important;
+    border: 1px solid #444 !important;
+}
 
 
 

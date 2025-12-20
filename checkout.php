@@ -40,13 +40,13 @@ $orderNumber = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Generate order number
     $orderNumber = 'ORD-' . date('Ymd') . '-' . strtoupper(substr(uniqid(), -6));
-    
+
     // Create orders directory if it doesn't exist
     $ordersDir = __DIR__ . "/orders";
     if (!is_dir($ordersDir)) {
         mkdir($ordersDir, 0777, true);
     }
-    
+
     // Prepare order data
     $orderData = [
         'order_number' => $orderNumber,
@@ -55,11 +55,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'status' => 'ordered',
         'items' => $cartData['items'],
         'totals' => [
-    'subtotal' => $cartData['totals']['subtotal'],
-    'tax' => $cartData['totals']['tax'],
-    'discount' => $discountAmount,
-    'total' => $totalAfterDiscount
-],
+            'subtotal' => $cartData['totals']['subtotal'],
+            'tax' => $cartData['totals']['tax'],
+            'discount' => $discountAmount,
+            'total' => $totalAfterDiscount
+        ],
+        'gift_option' => [
+            'is_gift' => isset($_POST['is_gift']),
+            'message' => $_POST['gift_message'] ?? ''
+        ],
 
         'shipping_address' => [
             'name' => $_POST['fullname'] ?? '',
@@ -70,15 +74,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ],
         'payment_method' => $_POST['payment_method'] ?? 'credit_card'
     ];
-    
+
     // Save order
     $orderFile = $ordersDir . "/" . $orderNumber . ".json";
     file_put_contents($orderFile, json_encode($orderData, JSON_PRETTY_PRINT));
-    
+
     // Clear cart
     unlink($cartFile);
     unset($_SESSION['cart_id']);
-    
+
     $orderSuccess = true;
 }
 
@@ -86,152 +90,163 @@ $darkMode = "🌙 Dark Mode";
 ?>
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <title>Checkout - MemeShop</title>
-    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue&family=Bangers&family=Fredoka+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue&family=Bangers&family=Fredoka+One&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="mystyle.css">
 </head>
+
 <body>
 
-<header>
-    <div class="header-container">
-        <h1>MemeShop</h1>
-        <div class="header-icons">
-            <div class="theme-controls">
-                <button id="darkToggleBtn" class="profile-btn"><?php echo $darkMode; ?></button>
+    <header>
+        <div class="header-container">
+            <h1>MemeShop</h1>
+            <div class="header-icons">
+                <div class="theme-controls">
+                    <button id="darkToggleBtn" class="profile-btn"><?php echo $darkMode; ?></button>
+                </div>
             </div>
         </div>
-    </div>
-</header>
-<hr>
+    </header>
+    <hr>
 
-<?php if ($orderSuccess): ?>
-    <div class="success-message">
-        <h2>✅ Order Placed Successfully!</h2>
-        <p>Thank you for your purchase!</p>
-        <div class="order-number">Order #<?php echo $orderNumber; ?></div>
-        <p>A confirmation email has been sent to your registered email address.</p>
-        <p style="margin-top: 30px;">
-            <a href="customerOrders.php" style="color: #4CAF50; font-weight: bold;">View My Orders</a> | 
-            <a href="index.php" style="color: #4CAF50; font-weight: bold;">Continue Shopping</a>
-        </p>
-    </div>
-<?php else: ?>
+    <?php if ($orderSuccess): ?>
+        <div class="success-message">
+            <h2>✅ Order Placed Successfully!</h2>
+            <p>Thank you for your purchase!</p>
+            <div class="order-number">Order #<?php echo $orderNumber; ?></div>
+            <p>A confirmation email has been sent to your registered email address.</p>
+            <p style="margin-top: 30px;">
+                <a href="customerOrders.php" style="color: #4CAF50; font-weight: bold;">View My Orders</a> |
+                <a href="index.php" style="color: #4CAF50; font-weight: bold;">Continue Shopping</a>
+            </p>
+        </div>
+    <?php else: ?>
 
-<div class="checkout-container">
-    <div class="checkout-form">
-        <h2>Checkout</h2>
-        
-        <form method="POST">
-            <div class="form-section">
-                <h3>Shipping Information</h3>
-                
-                <div class="form-group">
-                    <label for="fullname">Full Name *</label>
-                    <input type="text" id="fullname" name="fullname" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="address">Address *</label>
-                    <input type="text" id="address" name="address" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="city">City *</label>
-                    <input type="text" id="city" name="city" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="postal_code">Postal Code *</label>
-                    <input type="text" id="postal_code" name="postal_code" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="country">Country *</label>
-                    <select id="country" name="country" required>
-                        <option value="">Select Country</option>
-                        <option value="Germany">Germany</option>
-                        <option value="Austria">Austria</option>
-                        <option value="Switzerland">Switzerland</option>
-                        <option value="France">France</option>
-                        <option value="Italy">Italy</option>
-                        <option value="Netherlands">Netherlands</option>
-                    </select>
-                </div>
+        <div class="checkout-container">
+            <div class="checkout-form">
+                <h2>Checkout</h2>
+
+                <form method="POST">
+                    <div class="form-section">
+                        <h3>Shipping Information</h3>
+
+                        <div class="form-group">
+                            <label for="fullname">Full Name *</label>
+                            <input type="text" id="fullname" name="fullname" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="address">Address *</label>
+                            <input type="text" id="address" name="address" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="city">City *</label>
+                            <input type="text" id="city" name="city" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="postal_code">Postal Code *</label>
+                            <input type="text" id="postal_code" name="postal_code" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="country">Country *</label>
+                            <select id="country" name="country" required>
+                                <option value="">Select Country</option>
+                                <option value="Germany">Germany</option>
+                                <option value="Austria">Austria</option>
+                                <option value="Switzerland">Switzerland</option>
+                                <option value="France">France</option>
+                                <option value="Italy">Italy</option>
+                                <option value="Netherlands">Netherlands</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3>Payment Method</h3>
+                        <div class="payment-options">
+                            <label class="payment-option">
+                                <input type="radio" name="payment_method" value="credit_card" checked>
+                                Credit Card
+                            </label>
+                            <label class="payment-option">
+                                <input type="radio" name="payment_method" value="paypal">
+                                PayPal
+                            </label>
+                            <label class="payment-option">
+                                <input type="radio" name="payment_method" value="bank_transfer">
+                                Bank Transfer
+                            </label>
+                            <label class="payment-option">
+                                <input type="radio" name="payment_method" value="cash_on_delivery">
+                                Cash on Delivery
+                            </label>
+                        </div>
+                    </div>
+
+                    <div style="margin: 15px 0; padding: 10px; border: 1px solid #000; background: #fff;">
+                        <label><input type="checkbox" name="is_gift"> 🎁 Is this a gift?</label><br>
+                        <textarea name="gift_message" placeholder="Optional gift message..."
+                            style="width: 100%; margin-top: 5px;"></textarea>
+                    </div>
+
+                    <button type="submit" class="place-order-btn">Place Order</button>
+                </form>
+
+                <p style="text-align: center; margin-top: 20px;">
+                    <a href="shoppingCart.php">← Back to Cart</a>
+                </p>
             </div>
-            
-            <div class="form-section">
-                <h3>Payment Method</h3>
-                <div class="payment-options">
-                    <label class="payment-option">
-                        <input type="radio" name="payment_method" value="credit_card" checked>
-                        Credit Card
-                    </label>
-                    <label class="payment-option">
-                        <input type="radio" name="payment_method" value="paypal">
-                        PayPal
-                    </label>
-                    <label class="payment-option">
-                        <input type="radio" name="payment_method" value="bank_transfer">
-                        Bank Transfer
-                    </label>
-                    <label class="payment-option">
-                        <input type="radio" name="payment_method" value="cash_on_delivery">
-                        Cash on Delivery
-                    </label>
+
+            <div class="order-summary">
+                <h3>Order Summary</h3>
+
+                <?php foreach ($cartData['items'] as $item): ?>
+                    <div class="order-item">
+                        <div>
+                            <strong><?php echo htmlspecialchars($item['name']); ?></strong><br>
+                            <small>Qty: <?php echo $item['quantity']; ?> ×
+                                €<?php echo number_format($item['price'], 2); ?></small>
+                        </div>
+                        <div>
+                            €<?php echo number_format($item['subtotal'], 2); ?>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+
+                <div class="summary-totals">
+                    <div class="summary-row">
+                        <span>Subtotal:</span>
+                        <span>€<?php echo number_format($cartData['totals']['subtotal'], 2); ?></span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Tax (19%):</span>
+                        <span>€<?php echo number_format($cartData['totals']['tax'], 2); ?></span>
+                    </div>
+                    <?php if ($cartData['totals']['discount'] > 0): ?>
+                        <div class="summary-row">
+                            <span>Discount:</span>
+                            <span>-€<?php echo number_format($cartData['totals']['discount'], 2); ?></span>
+                        </div>
+                    <?php endif; ?>
+                    <div class="summary-row total">
+                        <span>Total:</span>
+                        <span>€<?php echo number_format($cartData['totals']['total'], 2); ?></span>
+                    </div>
                 </div>
-            </div>
-            
-            <button type="submit" class="place-order-btn">Place Order</button>
-        </form>
-        
-        <p style="text-align: center; margin-top: 20px;">
-            <a href="shoppingCart.php">← Back to Cart</a>
-        </p>
-    </div>
-    
-    <div class="order-summary">
-        <h3>Order Summary</h3>
-        
-        <?php foreach ($cartData['items'] as $item): ?>
-            <div class="order-item">
-                <div>
-                    <strong><?php echo htmlspecialchars($item['name']); ?></strong><br>
-                    <small>Qty: <?php echo $item['quantity']; ?> × €<?php echo number_format($item['price'], 2); ?></small>
-                </div>
-                <div>
-                    €<?php echo number_format($item['subtotal'], 2); ?>
-                </div>
-            </div>
-        <?php endforeach; ?>
-        
-        <div class="summary-totals">
-            <div class="summary-row">
-                <span>Subtotal:</span>
-                <span>€<?php echo number_format($cartData['totals']['subtotal'], 2); ?></span>
-            </div>
-            <div class="summary-row">
-                <span>Tax (19%):</span>
-                <span>€<?php echo number_format($cartData['totals']['tax'], 2); ?></span>
-            </div>
-            <?php if ($cartData['totals']['discount'] > 0): ?>
-                <div class="summary-row">
-                    <span>Discount:</span>
-                    <span>-€<?php echo number_format($cartData['totals']['discount'], 2); ?></span>
-                </div>
-            <?php endif; ?>
-            <div class="summary-row total">
-                <span>Total:</span>
-                <span>€<?php echo number_format($cartData['totals']['total'], 2); ?></span>
             </div>
         </div>
-    </div>
-</div>
 
-<?php endif; ?>
+    <?php endif; ?>
 
-<script src="task2.js"></script>
+    <script src="task2.js"></script>
 
 </body>
+
 </html>
