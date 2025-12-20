@@ -31,8 +31,6 @@ if (file_exists($cartFile)) {
 $discountAmount = $cartData['totals']['discount'] ?? 0;
 $totalAfterDiscount = $cartData['totals']['total'] ?? 0;
 
-
-$darkMode = "🌙 Dark Mode";
 ?>
 <!DOCTYPE html>
 <html>
@@ -59,9 +57,6 @@ $darkMode = "🌙 Dark Mode";
             <a href="shoppingCart.php" class="cart-btn">
                 <span class="btn-text">🛒Cart</span>
             </a>
-            <div class="theme-controls">
-                <button id="darkToggleBtn" class="profile-btn"><?php echo $darkMode; ?></button>
-            </div>
         </div>
     </div>
 </header>
