@@ -1,6 +1,5 @@
 <?php
 session_start();
-$state = $_SESSION["null"] ?? "default_value";
 $darkMode = "🌙 Dark Mode";
 // Admin check
 if (!isset($_SESSION['userId']) || $_SESSION['isAdmin'] !== true) {
@@ -89,7 +88,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         </form>
                     <?php endif; ?>
 
-                    <?php if ($state === "rejected"): ?>
+                    <?php if ($status === "rejected"): ?>
                         <p style="color:red;">
                             Reason: <?= htmlspecialchars($order['rejectionReason']) ?>
                         </p>

@@ -101,9 +101,9 @@ function countPreviousOrders($userId) {
         $order = json_decode(file_get_contents($file), true);
 
         if (
-            isset($order['userId'], $order['state']) &&
-            $order['userId'] == $userId &&
-            in_array($order['state'], ['completed', 'processing'])
+            isset($order['user_id'], $order['status']) &&
+            $order['user_id'] == $userId &&
+            in_array($order['status'], ['completed', 'processing'])
         ) {
             $count++;
         }
