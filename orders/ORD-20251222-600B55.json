@@ -1,0 +1,34 @@
+{
+    "order_number": "ORD-20251222-600B55",
+    "user_id": 1,
+    "order_date": "2025-12-22 08:56:22",
+    "status": "ordered",
+    "items": [
+        {
+            "pid": 5,
+            "name": "Plans with Cat Shirt",
+            "price": 20,
+            "quantity": 4,
+            "subtotal": 80,
+            "imagepath": ".\/Webshop%20pictures\/plans%20with%20cat.png"
+        }
+    ],
+    "totals": {
+        "subtotal": 80,
+        "tax": 15.199999999999999289457264239899814128875732421875,
+        "discount": 0,
+        "total": 95.2000000000000028421709430404007434844970703125
+    },
+    "gift_option": {
+        "is_gift": false,
+        "message": ""
+    },
+    "shipping_address": {
+        "name": "The Name",
+        "address": "The Address",
+        "city": "The City",
+        "postal_code": "43875",
+        "country": "Austria"
+    },
+    "payment_method": "paypal"
+}

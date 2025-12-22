@@ -1,0 +1,34 @@
+{
+    "order_number": "ORD-20251222-1E611F",
+    "user_id": 1,
+    "order_date": "2025-12-22 08:52:33",
+    "status": "processing",
+    "items": [
+        {
+            "pid": 1,
+            "name": "wow Shirt",
+            "price": 20,
+            "quantity": 1,
+            "subtotal": 20,
+            "imagepath": ".\/Webshop%20pictures\/wow.png"
+        }
+    ],
+    "totals": {
+        "subtotal": 20,
+        "tax": 3.79999999999999982236431605997495353221893310546875,
+        "discount": 0,
+        "total": 23.800000000000000710542735760100185871124267578125
+    },
+    "gift_option": {
+        "is_gift": true,
+        "message": "Happy Birthday."
+    },
+    "shipping_address": {
+        "name": "Ali",
+        "address": "Meme Street",
+        "city": "Meme Town ",
+        "postal_code": "85077",
+        "country": "Germany"
+    },
+    "payment_method": "credit_card"
+}
